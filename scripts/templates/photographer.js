@@ -1,5 +1,6 @@
 function photographerTemplate(data) {
     const {
+        id,
         name,
         portrait,
         city,
@@ -12,29 +13,18 @@ function photographerTemplate(data) {
 
     function getUserCardDOM() {
         const article = document.createElement('article');
-        const img = document.createElement('img');
-        img.setAttribute("src", picture)
-        const h2 = document.createElement('h2');
-        h2.textContent = name;
+        const artistCard = `
+            <a href="photographer.html?id=${id}" role="link" aria-label="View profile of ${name}">
+                <img class="photographer_image" src="${picture}" alt="${name}">
+                <h2 class="photographer_name">${name}</h2>
+            </a>
+            <div class="photographer_details">
+                <h3 class="photographer_location">${city}, ${country}</h3>
+                <p class="photographer_tagline">${tagline}</p>
+                <p class="photographer_price">${price}€/jour</p>
+            </div>`;
 
-        const divDetails = document.createElement('div');
-        
-
-        const h3 = document.createElement('h3');
-        h3.textContent = `${city}, ${country}`;
-
-        const paragraphTagline = document.createElement('p');
-        paragraphTagline.textContent = tagline;
-
-        const paragraphPrice = document.createElement('p');
-        paragraphPrice.textContent = `${price}€/jour`;
-
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(divDetails);
-        divDetails.appendChild(h3);
-        divDetails.appendChild(paragraphTagline);
-        divDetails.appendChild(paragraphPrice);
+        article.innerHTML = artistCard;
         return (article);
     }
     return {

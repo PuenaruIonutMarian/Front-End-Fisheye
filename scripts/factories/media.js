@@ -1,4 +1,4 @@
-function createMediaFactory(mediaData) {
+function mediaFactory(mediaData) {
     const { type, url, title } = mediaData;
 
     switch (type) {

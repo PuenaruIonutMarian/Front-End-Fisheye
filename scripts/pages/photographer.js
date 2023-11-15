@@ -21,7 +21,7 @@ async function init() {
         const photographerData = data.photographers.find((ph) => ph.id === parseInt(photographerId, 10));
 
         if (!photographerData) {
-            console.error(`Photographer with ID ${photographerId} not found in the data JSON file.`);
+            console.error(`No Photographer ID ${photographerId} in the data JSON file.`);
             return;
         }
 
@@ -34,7 +34,7 @@ async function init() {
         photographHeader.appendChild(photographerDOM);
 
     } catch (error) {
-        console.error('Error initializing photographer page:', error);
+        console.error('The error from when creating the photographer page', error);
     }
 }
 

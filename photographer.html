@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/db9c392b13.js" crossorigin="anonymous"></script>
   <title>Fisheye - photographe </title>
 </head>
 
@@ -19,7 +20,27 @@
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
+
+
+    <div class="sort-toggle">
+      <label class="trierPar">Trier par</label>
+      <div id="select" class="dropdown">
+        <button class="dropdown-button" id="toggleDropdown">
+          Popularité 
+          <i class="fa fa-chevron-down chevron"></i>
+          <i class="fa fa-chevron-up chevron"></i>
+        </button>
+        <div class="separate"></div>
+        <div class="dropdown-content" id="dropdownContent">
+          <button id="sortByDate">Date</button>
+        <div class="separate"></div>
+          <button id="sortByTitle">Titre</button>
+        </div>
+      </div>
+    </div>
+
     <div class="photographer-media-section"></div>
+    <div class="cotation"></div>
   </main>
   <div id="contact_modal">
     <div class="modal">

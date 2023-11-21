@@ -103,13 +103,13 @@ async function photographerHeader() {
             return;
         }
 
-        // Create media card HTML
-        const mediaCardHTML = mediaData
-            .map((mediaItem, index) => createMediaCard(photographerData, mediaItem, index))
-            .join(''); // Join the HTML strings into one string
+        const mediaCardContainer = document.querySelector(".photographer-media-section");
 
-        // Append the created media card
-        document.querySelector(".photographer-media-section").innerHTML = mediaCardHTML;
+mediaData.forEach((mediaItem, index) => {
+    const mediaCard = createMediaCard(photographerData, mediaItem, index);
+    mediaCardContainer.appendChild(mediaCard);
+});
+
     } catch (error) {
         console.error('Error in photographerHeader function', error);
     }
@@ -119,51 +119,98 @@ async function photographerHeader() {
 photographerHeader();
 
 
-// Function for media card element
+
 function createMediaCard(photographer, media, index) {
+    const mediaCard = document.createElement('figure');
+    const infoCaption = document.createElement('figcaption');
+    const titleHeading = document.createElement('h2');
+    const likesParagraph = document.createElement('p');
+    const likesSpan = document.createElement('span');
+    const heartButton = document.createElement('button');
+    const imageSpan = document.createElement('span');
+    const heartImage = document.createElement('img');
+
     if (media.image) {
-        return `
-            <figure class="photo-media">
-                <img src="../../assets/portofolio/${photographer.name}/${media.image}" alt="${media.title}" tabindex="0" class="image"/>
-                <figcaption class="info">
-                    <h2>${media.title}</h2>
-                    <p class="likes" id="likes-${index}">
-                        <span class="span_likes">${media.likes}</span>
-                        <button class="heart-button liked" data-index="${index}">
-                            <span>
-                                <img src="assets/icons/coeur.svg" alt="coeur">
-                            </span>
-                        </button>
-                    </p>
-                </figcaption>
-            </figure>
-        `;
+        const imageElement = document.createElement('img');
+        imageElement.classList.add('image');
+        imageElement.src = `../../assets/portofolio/${photographer.name}/${media.image}`;
+        imageElement.alt = media.title;
+        imageElement.tabIndex = 0;
+
+        mediaCard.appendChild(imageElement);
+        mediaCard.classList.add('photo-media');
     } else if (media.video) {
-        return `
-            <figure class="video-media">
-                <video src="../../assets/portofolio/${photographer.name}/${media.video}" class="video" controls autoplay tabindex="0"></video>
-                <figcaption class="info">
-                    <h2>${media.title}</h2>
-                    <p class="likes" id="likes-${index}">
-                        <span class="span_likes">${media.likes}</span>
-                        <button class="heart-button liked" data-index="${index}">
-                            <span>
-                                <img src="assets/icons/coeur.svg" alt="coeur">
-                            </span>
-                        </button>
-                    </p>
-                </figcaption>
-            </figure>
-        `;
+        const videoElement = document.createElement('video');
+        videoElement.classList.add('video');
+        videoElement.src = `../../assets/portofolio/${photographer.name}/${media.video}`;
+        videoElement.controls = true;
+        videoElement.autoplay = true;
+        videoElement.tabIndex = 0;
+
+        mediaCard.appendChild(videoElement);
+        mediaCard.classList.add('video-media');
     }
+
+    infoCaption.appendChild(titleHeading);
+    infoCaption.appendChild(likesParagraph);
+
+    likesParagraph.appendChild(likesSpan);
+    likesParagraph.appendChild(heartButton);
+
+    heartButton.appendChild(imageSpan);
+    imageSpan.appendChild(heartImage);
+
+    mediaCard.appendChild(infoCaption);
+
+
+    titleHeading.textContent = media.title;
+
+    likesSpan.textContent = media.likes;
+    
+    infoCaption.classList.add("info");
+    likesParagraph.classList.add("likes");
+    likesParagraph.id = `likes-${index}`;
+    likesSpan.classList.add("span_likes")
+
+
+    heartButton.classList.add('heart-button', 'liked');
+    heartButton.setAttribute('data-index', index);
+
+    heartImage.src = 'assets/icons/coeur.svg';
+    heartImage.alt = 'coeur';
+
+    return mediaCard;
 }
 
 
-// const photographer = getPhotographerById();
-// const media = getMediaByPhotographerId();
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the button element
+    const toggleDropdownButton = document.getElementById('toggleDropdown');
 
-// media.forEach((mediaItem, index) => {
-//     const mediaCardHTML = createMediaCard(photographer, mediaItem, index);
-//     // Append the created media card
-//     document.querySelector(".photographer-media-section").innerHTML += mediaCardHTML;
-// });
+    // Get the element to show/hide
+    const separatePopulareElement = document.querySelector('.separate_populare');
+    const separateDateElement = document.querySelector('.separate_date');
+    const sortByDateButton = document.querySelector("#sortByDate");
+    const sortByTitleButton = document.querySelector("#sortByTitle");
+    const dropDownButton = document.getElementById('toggleDropdown');
+    
+    // Get the elements with class "fa-chevron-up" and "fa-chevron-down"
+    const chevronUp = document.querySelector(".fa-chevron-up");
+    const chevronDown = document.querySelector(".fa-chevron-down");
+
+    // Add click event listener
+    toggleDropdownButton.addEventListener('click', function () {
+        // Toggle the "hide" class on the separate elements
+        separateDateElement.classList.toggle('hide');
+        separatePopulareElement.classList.toggle('hide');
+        sortByDateButton.classList.toggle('hide');
+        sortByTitleButton.classList.toggle('hide');
+        dropDownButton.style.borderRadius = '0px';
+        
+        // Toggle visibility of chevron icons
+        chevronDown.style.display = 'none';
+        chevronUp.style.display = 'inline-block';
+    });
+});
+
+

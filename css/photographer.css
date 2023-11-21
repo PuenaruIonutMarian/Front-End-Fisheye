@@ -238,11 +238,13 @@ form input {
   text-align: left;
   padding-left: 20px;
 }
+
 .dropdown {
   display: flex;
   flex-direction: column;
   width: 170px;
   border-radius: 5px;
+  overflow: hidden;
   gap: 0px;
 }
 
@@ -251,7 +253,8 @@ form input {
   flex-direction: column;
 }
 
-.separate {
+.separate_populare,
+.separate_date {
   height: 1.5px;
   flex-shrink: 0;
   background-color: white;
@@ -288,4 +291,15 @@ form input {
   flex-shrink: 0;
   border-radius: 5px;
   background: #db8876;
+}
+
+.hide {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

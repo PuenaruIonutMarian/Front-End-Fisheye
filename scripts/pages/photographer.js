@@ -124,7 +124,7 @@ function createMediaCard(photographer, media, index) {
     if (media.image) {
         return `
             <figure class="photo-media">
-                <img src="../../assets/portofolio/${photographer.name}/${media.image}" alt="${media.title}" tabindex="0" />
+                <img src="../../assets/portofolio/${photographer.name}/${media.image}" alt="${media.title}" tabindex="0" class="image"/>
                 <figcaption class="info">
                     <h2>${media.title}</h2>
                     <p class="likes" id="likes-${index}">

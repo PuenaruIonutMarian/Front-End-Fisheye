@@ -149,3 +149,57 @@ form input {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* /////////////////// PORTOFOLIO SECTION ///////////// */
+
+.photographer-media-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  justify-items: center;
+}
+.photographer-media-section figure .info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.photographer-media-section figure .info h2 {
+  color: #901c1c;
+  font-family: DM Sans;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
+  max-width: 220px;
+}
+
+.photographer-media-section figure .info .likes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.photographer-media-section figure .info .span_likes {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.photographer-media-section figure .info span img[alt="coeur"] {
+  width: 21px;
+  height: 24px;
+}
+.photographer-media-section figure .info button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.photographer-media-section figure .image,
+.photographer-media-section figure .video {
+  /* margin-top: 100px; */
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 5px;
+}

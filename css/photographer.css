@@ -76,29 +76,31 @@ form input {
 }
 
 .photograph-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
-  margin-top: 100px;
+  position: relative;
 }
 
 .photograph-header article {
-  justify-self: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  padding: 50px;
 }
 
 .photograph-header article a {
   text-decoration: none;
   text-align: center;
+  pointer-events: none;
 }
 
 .photograph-header article h2 {
+  margin: 0;
   color: #d3573c;
-  font-size: 36px;
-  margin-bottom: 0;
+  font-family: DM Sans;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .photograph-header article img {
@@ -109,21 +111,41 @@ form input {
 }
 
 .photograph-header article div {
-  text-align: center;
+  text-align: left;
   font-family: DM Sans;
   font-weight: 400;
 }
 
 .photograph-header article div h3 {
   color: #901c1c;
-  font-size: 13px;
-  margin: 0;
+  font-family: DM Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.photograph-header article div p {
-  font-size: 10px;
-  margin: 0;
+.photograph-header .photographer_tagline {
+  color: #525252;
+  font-family: DM Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.photograph-header article div p:nth-child(3) {
-  font-size: 9px;
-  color: gray;
+.photograph-header .photographer_price {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.photograph-header button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

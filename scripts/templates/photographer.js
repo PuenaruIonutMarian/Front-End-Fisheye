@@ -16,9 +16,10 @@ function photographerTemplate(data) {
         const artistCard = `
             <a href="photographer.html?id=${id}" role="link" aria-label="View profile of ${name}">
                 <img class="photographer_image" src="${picture}" alt="${name}">
-                <h2 class="photographer_name">${name}</h2>
             </a>
+
             <div class="photographer_details">
+                <h2 class="photographer_name">${name}</h2>
                 <h3 class="photographer_location">${city}, ${country}</h3>
                 <p class="photographer_tagline">${tagline}</p>
                 <p class="photographer_price">${price}€/jour</p>
@@ -33,3 +34,5 @@ function photographerTemplate(data) {
         getUserCardDOM
     }
 }
+
+

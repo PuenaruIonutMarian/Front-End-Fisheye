@@ -50,10 +50,10 @@ h1 {
 }
 
 .photographer_section article img {
+  border-radius: 50%;
   height: 200px;
   width: 200px;
-  border-radius: 50%;
-  object-fit: cover;
+  overflow: hidden;
 }
 
 .photographer_section article div {

@@ -567,3 +567,8 @@ aside {
     right: 10px;
   }
 }
+
+/* ///////////////////DE MODIFICAT */
+.photographer_tagline2 {
+  color: var(--color-darkest-gray);
+}

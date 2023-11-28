@@ -32,7 +32,7 @@ export default class PhotographerHeader {
 
         // Create paragraph element for tagline
         const taglineParagraph = document.createElement('p');
-        taglineParagraph.classList.add('photographer_tagline');
+        taglineParagraph.classList.add('photographer_tagline2');
         taglineParagraph.textContent = this.photographer.tagline;
 
         // Append h1 and paragraphs to the profile info div

@@ -14,6 +14,7 @@
   --color-secondary: #db8876;
   --color-tertiary: #d3573c;
   --color-dark: #000;
+  --color-darkest-gray: #525252;
   --color-dark-gray: #757575;
   --color-light: #fff;
   --color-light-medium: #fafafa;
@@ -119,6 +120,7 @@ h1 {
   font-weight: 400;
 }
 
+.photographer_tagline2,
 .photographer_tagline {
   font-size: clamp(1rem, 1.8vw, 1.8rem);
   font-weight: 400;

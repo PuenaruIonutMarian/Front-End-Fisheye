@@ -182,7 +182,7 @@ function createMediaCard(photographer, media, index) {
     return mediaCard;
 }
 
-
+// function for toggle filter menu
 document.addEventListener('DOMContentLoaded', function () {
     // Get the button element
     const toggleDropdownButton = document.getElementById('toggleDropdown');

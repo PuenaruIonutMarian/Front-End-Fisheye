@@ -5,7 +5,7 @@
  * @param {Array} medias.medias - La liste des médias du photographe.
  * @returns {void}
  */
-export const displayLightbox = (medias) => {
+export const displayLightbox = medias => {
   // Sélectionne les éléments de la lightbox.
   const lightboxWrapper = document.querySelector('.lightbox_wrapper')
   const btnClose = document.querySelector('.btn_close_lightbox')
@@ -17,20 +17,14 @@ export const displayLightbox = (medias) => {
   // Récupère les informations sur le photographe et la liste des médias.
   const photographer = medias.photographer
   const mediasList = medias.medias
+
+  // Initialize currentIndex to 0
   let currentIndex = 0
 
   // Ajoute un écouteur d'événement à chaque élément de fournisseur de médias.
-  mediaProvider.forEach(media => {
+  mediaProvider.forEach((media, index) => {
     media.addEventListener('click', () => {
-      // Récupère l'identifiant du média à partir des données de l'élément.
-      const mediaId = media.dataset.media
-      const mediaIndex = mediasList.findIndex(media => media.id === mediaId)
-      currentIndex = mediaIndex
-      // Affiche la lightbox et met le focus sur le bouton de fermeture.
-      lightboxWrapper.style.display = 'flex'
-      btnClose.focus()
-      // Génère le template de la lightbox.
-      lightboxTemplate()
+      openLightbox(index)
     })
   })
 
@@ -53,6 +47,18 @@ export const displayLightbox = (medias) => {
     // Ajoute l'élément média et la légende à lightboxMedia.
     lightboxMedia.appendChild(mediaElement)
     lightboxMedia.appendChild(createFigcaptionElement(currentMedia.title))
+  }
+
+  /**
+   * Fonction pour ouvrir la lightbox en fonction de l'identifiant du média.
+   * @param {string} mediaId - L'identifiant du média.
+   * @returns {void}
+   */
+  const openLightbox = (index) => {
+    currentIndex = index
+    lightboxWrapper.style.display = 'flex'
+    btnClose.focus()
+    lightboxTemplate()
   }
 
   /**

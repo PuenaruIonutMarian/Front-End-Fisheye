@@ -1,17 +1,31 @@
 import { displayTotalLikes } from '../utils/likes.js'
 import { displayLightbox } from '../utils/lightbox.js'
 
+/**
+ * Gère l'ouverture et la fermeture du menu de filtre.
+ * @returns {void}
+ */
 export const openCloseFilterMenu = () => {
+  // Sélectionne les éléments du menu de filtre.
   const filterMenu = document.querySelector('.dropdown_content')
   const filterMenuButton = document.querySelector('.btn_drop')
   const filterButtons = document.querySelectorAll('.dropdown_content button')
 
+  // Ajoute un écouteur d'événement au bouton du menu de filtre.
   filterMenuButton.addEventListener('click', () => {
+    // Vérifie si le menu est actuellement étendu.
     const isExpanded = filterMenuButton.getAttribute('aria-expanded') === 'true' || false
+
+    // Inverse l'état aria-expanded pour ouvrir ou fermer le menu.
     filterMenuButton.setAttribute('aria-expanded', !isExpanded)
+
+    // Applique l'effet de rideau au menu.
     filterMenu.classList.toggle('curtain_effect')
+
+    // Fait pivoter l'icône de flèche vers le haut ou le bas.
     document.querySelector('.fa-chevron-up').classList.toggle('rotate')
 
+    // Détermine les nouvelles valeurs des attributs aria-hidden et tabindex du menu.
     const newAriaHiddenValue = filterMenu.classList.contains('curtain_effect') ? 'false' : 'true'
     filterMenu.setAttribute('aria-hidden', newAriaHiddenValue)
 
@@ -20,7 +34,13 @@ export const openCloseFilterMenu = () => {
   })
 }
 
-export const displayMediaWithFilter = mediasTemplate => {
+/**
+ * Affiche les médias filtrés en fonction de l'option de filtre sélectionnée.
+ * @param {Object} mediasTemplate - Le modèle de médias à afficher.
+ * @returns {void}
+ */
+export const displayMediaWithFilter = (mediasTemplate) => {
+  // Sélectionne les éléments relatifs au filtre actuel et à tous les filtres disponibles.
   const currentFilter = document.querySelector('#current_filter')
   const allFilters = Array.from(document.querySelectorAll('.dropdown_content li button'))
 
@@ -28,19 +48,27 @@ export const displayMediaWithFilter = mediasTemplate => {
   let filterAlreadySelected = allFilters.find(filter => filter.textContent == currentFilter.textContent)
   filterAlreadySelected.style.display = 'none'
 
+  // Ajoute des écouteurs d'événements aux boutons de filtre.
   allFilters.forEach(filter => {
     filter.addEventListener('click', () => {
+      // Met à jour le filtre actuel et réaffiche le filtre précédemment sélectionné.
       currentFilter.textContent = filter.textContent
       if (filterAlreadySelected) filterAlreadySelected.style.display = 'block'
 
       filterAlreadySelected = filter
       filterAlreadySelected.style.display = 'none'
 
+      // Trie et affiche les médias en fonction du filtre sélectionné.
       sortByFilter(filter.textContent)
     })
   })
 
-  const sortByFilter = filterValue => {
+  /**
+   * Trie les médias en fonction de la valeur du filtre.
+   * @param {string} filterValue - La valeur du filtre.
+   * @returns {void}
+   */
+  const sortByFilter = (filterValue) => {
     switch (filterValue) {
       case 'Titre':
         mediasTemplate.medias.sort((a, b) => a.title.localeCompare(b.title))
@@ -53,14 +81,19 @@ export const displayMediaWithFilter = mediasTemplate => {
         break
     }
 
+    // Sélectionne le contenu de la page du profil du photographe.
     const profilePageContent = document.querySelector('.portofolio')
     profilePageContent.innerHTML = ''
 
+    // Recrée les médias du photographe en fonction du nouveau tri.
     mediasTemplate.createPhotographerMedias()
     const mediasfiltered = mediasTemplate
+
+    // Affiche la lightbox et le nombre total de likes.
     displayLightbox(mediasfiltered)
     displayTotalLikes()
 
+    // Applique une animation aux éléments médias.
     const mediaElements = document.querySelectorAll('.portofolio')
     mediaElements.forEach((media, index) => {
       setTimeout(() => {

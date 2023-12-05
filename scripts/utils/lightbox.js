@@ -1,4 +1,12 @@
-export const displayLightbox = medias => {
+/**
+ * Affiche la lightbox pour visualiser les médias en détail.
+ * @param {Object} medias - Les médias à afficher dans la lightbox.
+ * @param {Object} medias.photographer - Les informations sur le photographe.
+ * @param {Array} medias.medias - La liste des médias du photographe.
+ * @returns {void}
+ */
+export const displayLightbox = (medias) => {
+  // Sélectionne les éléments de la lightbox.
   const lightboxWrapper = document.querySelector('.lightbox_wrapper')
   const btnClose = document.querySelector('.btn_close_lightbox')
   const btnPrevious = document.querySelector('.btn_previous')
@@ -6,39 +14,52 @@ export const displayLightbox = medias => {
   const lightboxMedia = document.querySelector('.lightbox_media')
   const mediaProvider = Array.from(document.querySelectorAll('.gallery_card a'))
 
+  // Récupère les informations sur le photographe et la liste des médias.
   const photographer = medias.photographer
   const mediasList = medias.medias
   let currentIndex = 0
-  //   const lightbox = document.querySelector('.lightbox')
 
+  // Ajoute un écouteur d'événement à chaque élément de fournisseur de médias.
   mediaProvider.forEach(media => {
     media.addEventListener('click', () => {
+      // Récupère l'identifiant du média à partir des données de l'élément.
       const mediaId = media.dataset.media
       const mediaIndex = mediasList.findIndex(media => media.id === mediaId)
       currentIndex = mediaIndex
+      // Affiche la lightbox et met le focus sur le bouton de fermeture.
       lightboxWrapper.style.display = 'flex'
       btnClose.focus()
+      // Génère le template de la lightbox.
       lightboxTemplate()
     })
   })
 
+  /**
+   * Génère le contenu de la lightbox en fonction de l'élément actuel.
+   * @returns {void}
+   */
   const lightboxTemplate = () => {
+    // Récupère le média actuel.
     const currentMedia = mediasList[currentIndex]
 
-    // Create the image or video element based on the media type
+    // Crée l'élément image ou vidéo en fonction du type de média.
     const mediaElement = currentMedia.image
       ? createImageElement(currentMedia)
       : createVideoElement(currentMedia)
 
-    // Clear existing content in lightboxMedia
+    // Efface le contenu existant dans lightboxMedia.
     lightboxMedia.innerHTML = ''
 
-    // Append the mediaElement and figcaption to lightboxMedia
+    // Ajoute l'élément média et la légende à lightboxMedia.
     lightboxMedia.appendChild(mediaElement)
     lightboxMedia.appendChild(createFigcaptionElement(currentMedia.title))
   }
 
-  // Function to create an image element
+  /**
+   * Crée un élément image.
+   * @param {Object} media - Les informations sur le média image.
+   * @returns {HTMLImageElement} - L'élément image créé.
+   */
   const createImageElement = (media) => {
     const imageElement = document.createElement('img')
     imageElement.src = `./assets/photographers/portofolio/${photographer.name}/${media.image}`
@@ -46,7 +67,11 @@ export const displayLightbox = medias => {
     return imageElement
   }
 
-  // Function to create a video element
+  /**
+   * Crée un élément vidéo.
+   * @param {Object} media - Les informations sur le média vidéo.
+   * @returns {HTMLVideoElement} - L'élément vidéo créé.
+   */
   const createVideoElement = (media) => {
     const videoElement = document.createElement('video')
     videoElement.controls = true
@@ -60,20 +85,24 @@ export const displayLightbox = medias => {
     return videoElement
   }
 
-  // Function to create a figcaption element
+  /**
+   * Crée un élément figcaption.
+   * @param {string} title - Le titre du média.
+   * @returns {HTMLFigcaptionElement} - L'élément figcaption créé.
+   */
   const createFigcaptionElement = (title) => {
     const figcaptionElement = document.createElement('figcaption')
     figcaptionElement.textContent = title
     return figcaptionElement
   }
 
-  /// //////////
-
+  // Fonction pour fermer la lightbox.
   const closeLightbox = () => {
     lightboxWrapper.style.display = 'none'
     lightboxMedia.innerHTML = ''
   }
 
+  // Fonction pour passer au média suivant.
   const nextMedia = () => {
     currentIndex++
     if (currentIndex > mediasList.length - 1) currentIndex = 0
@@ -81,6 +110,7 @@ export const displayLightbox = medias => {
     showActiveBtn(btnNext)
   }
 
+  // Fonction pour passer au média précédent.
   const previousMedia = () => {
     currentIndex--
     if (currentIndex < 0) currentIndex = mediasList.length - 1
@@ -88,11 +118,17 @@ export const displayLightbox = medias => {
     showActiveBtn(btnPrevious)
   }
 
-  const showActiveBtn = btn => {
+  /**
+   * Affiche brièvement l'état actif d'un bouton.
+   * @param {HTMLElement} btn - Le bouton à mettre en surbrillance.
+   * @returns {void}
+   */
+  const showActiveBtn = (btn) => {
     btn.classList.add('active')
     setTimeout(() => btn.classList.remove('active'), 100)
   }
 
+  // Ajoute des écouteurs d'événements pour les touches du clavier.
   document.addEventListener('keyup', e => {
     switch (e.key) {
       case 'Escape':
@@ -107,6 +143,7 @@ export const displayLightbox = medias => {
     }
   })
 
+  // Ajoute des écouteurs d'événements pour les boutons de navigation.
   btnPrevious.addEventListener('click', () => previousMedia())
   btnNext.addEventListener('click', () => nextMedia())
   btnClose.addEventListener('click', () => closeLightbox())

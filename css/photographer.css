@@ -1,6 +1,5 @@
-/* ///////////////// CONTACT FORM///////////// */
-
-/* ///////BUTTON///// */
+/* Styles pour la section du formulaire de contact */
+/* Le formulaire de contact est initialisé en tant que modal et est initialement caché */
 #contact_modal {
   display: none;
   z-index: 2000;
@@ -14,9 +13,12 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Styles généraux pour les boutons */
 button {
   font-family: "DM Sans", sans-serif;
 }
+
+/* Styles pour le bouton de contact */
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -31,13 +33,14 @@ button {
   z-index: 1000;
 }
 
+/* Styles pour le survol et le focus du bouton de contact */
 .contact_button:hover,
 .contact_button:focus {
   background-color: var(--color-secondary);
   color: var(--color-black);
 }
 
-/* /////////FORM//////// */
+/* Styles pour la section du formulaire dans le modal */
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -52,6 +55,7 @@ button {
   gap: 50px;
 }
 
+/* Styles pour l'en-tête du modal */
 .modal_header {
   display: grid;
   grid-template-rows: auto auto;
@@ -61,25 +65,30 @@ button {
   width: 100%;
 }
 
+/* Styles pour la mention "Contactez-moi" dans l'en-tête du modal */
 .contact_me {
   grid-column: 1 / span 2;
 }
 
+/* Styles pour l'icône de fermeture du modal dans l'en-tête */
 .modal_header img {
   cursor: pointer;
   grid-column: 3 / span 1;
   justify-self: end;
 }
 
+/* Styles pour le nom du formulaire dans l'en-tête du modal */
 .modal_form_name {
   grid-column: 1 / span 3;
 }
 
+/* Styles pour le titre du modal dans l'en-tête */
 .modal header h2 {
   font-size: 4rem;
   font-weight: normal;
 }
 
+/* Styles pour le formulaire lui-même */
 form {
   max-width: 100%;
   max-height: 100%;
@@ -89,11 +98,13 @@ form {
   align-items: flex-start;
 }
 
+/* Styles pour les labels du formulaire */
 form label {
   color: #312e2e;
   font-size: 36px;
 }
 
+/* Styles pour les conteneurs de champs du formulaire */
 form div {
   display: flex;
   flex-direction: column;
@@ -102,6 +113,7 @@ form div {
   margin-bottom: 26px;
 }
 
+/* Styles pour les champs de saisie du formulaire */
 form input {
   width: 100%;
   height: 68px;
@@ -110,6 +122,7 @@ form input {
   font-size: 36px;
 }
 
+/* Styles pour la zone de texte du formulaire */
 form textarea {
   width: 100%;
   border-radius: 5px;
@@ -118,142 +131,35 @@ form textarea {
   padding: 10px;
 }
 
+/* Styles pour les messages d'erreur ou de succès */
 form span {
-  /* color: var(--color-dark); */
   color: var(--color-primary);
   font-size: clamp(12px, 1.6vw, 22px);
 }
 
+/* Styles pour l'effet de focus sur les champs de saisie invalides */
 form input:invalid:focus,
 form textarea:invalid:focus {
   outline: 2px solid var(--color-primary);
 }
+
+/* Styles pour le survol du bouton de contact dans le formulaire */
 form .contact_button:hover {
   background-color: green;
 }
 
+/* Styles pour un champ de saisie invalide */
 .invalid {
   outline: 2px solid var(--color-primary);
 }
 
+/* Styles pour un champ de saisie valide */
 .valid {
   outline: 2px solid green;
 }
 
-/* Styles for larger screens, like tablets */
-@media screen and (max-width: 1510px) {
-  .modal header h2 {
-    font-size: 50px;
-  }
-}
-@media screen and (max-width: 1240px) {
-  .modal {
-    /* width: 40%; */
-    padding: 15px;
-    gap: 40px;
-  }
-  .modal header h2 {
-    font-size: 42px;
-  }
-  form label {
-    font-size: 24px;
-  }
-
-  form input {
-    height: 45px;
-  }
-
-  form input,
-  form textarea {
-    max-width: none;
-    font-size: 24px;
-  }
-  .modal header img {
-    margin-left: 80px;
-  }
-}
-
-@media screen and (max-width: 962px) {
-  .modal {
-    gap: 20px;
-  }
-  form div {
-    margin-bottom: 0;
-  }
-  .modal header h2 {
-    font-size: 36px;
-  }
-  form label {
-    font-size: 18px;
-  }
-  form input,
-  form textarea {
-    font-size: 18px;
-  }
-  form textarea {
-    max-height: 100px;
-  }
-  .modal header img {
-    width: 32px;
-    height: 32px;
-  }
-  form .contact_button {
-    margin-top: 5px;
-    height: 40px;
-    width: 90px;
-    font-size: 18px;
-  }
-}
-
-@media screen and (max-width: 838px) {
-  .modal {
-    width: 60%;
-  }
-
-  .modal header h2 {
-    font-size: 34px;
-  }
-  .modal header img {
-    margin-left: 70px;
-  }
-}
-/* Styles for smaller screens, like mobile devices */
-@media screen and (max-width: 720px) {
-  .modal {
-    gap: 0;
-    width: 90%;
-  }
-  .modal header {
-    flex-direction: row;
-    /* align-items: left; */
-    gap: 0;
-  }
-  .modal header h2 {
-    font-size: 28px;
-  }
-  .modal header img {
-    /* margin-left: 0; */
-    width: 24px;
-    height: 24px;
-  }
-  .modal header {
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-  form div {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .modal {
-    width: 100%;
-  }
-  .modal header h2 {
-    font-size: 24px;
-  }
-}
-/* //////////////USER PRESENTATION /////////////////////// */
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* Styles pour la présentation de l'utilisateur (photographe) */
 .photograph-header {
   background-color: var(--color-light-medium);
   height: 300px;
@@ -262,6 +168,7 @@ form .contact_button:hover {
   margin-bottom: 50px;
 }
 
+/* Styles pour chaque article dans la section de présentation */
 .photograph-header article {
   position: relative;
   top: 50%;
@@ -271,11 +178,13 @@ form .contact_button:hover {
   flex-direction: column;
 }
 
+/* Styles pour le lien (inutilisé) dans chaque article de la section de présentation */
 .photograph-header article a {
   text-decoration: none;
   pointer-events: none;
 }
 
+/* Styles pour le nom du photographe dans la section de présentation */
 .photograph-header article a .photographer_name {
   color: var(--color-tertiary);
   font-family: DM Sans;
@@ -283,6 +192,7 @@ form .contact_button:hover {
   font-weight: 400;
 }
 
+/* Styles pour la miniature du photographe dans la section de présentation */
 .photograph-header article a .photographer_thumbnail {
   position: absolute;
   right: 0;
@@ -294,6 +204,7 @@ form .contact_button:hover {
   transform: translateY(-50%);
 }
 
+/* Styles pour la localisation du photographe dans la section de présentation */
 .photograph-header article .photographer_location {
   color: var(--color-primary);
   font-family: DM Sans;
@@ -302,12 +213,13 @@ form .contact_button:hover {
   margin-bottom: 10px;
 }
 
+/* Styles pour la phrase d'accroche du photographe dans la section de présentation */
 .photograph-header .photographer_tagline {
   color: var(--color-dark-gray);
   font-size: 18px;
 }
 
-/* display none for the pricetag */
+/* Styles pour la balise de prix (cachée) dans la section de présentation */
 .photograph-header .photographer_price {
   border: 0;
   clip: rect(0 0 0 0);
@@ -319,6 +231,7 @@ form .contact_button:hover {
   width: 1px;
 }
 
+/* Styles pour le bouton dans la section de présentation */
 .photograph-header button {
   position: absolute;
   top: 60%;
@@ -328,6 +241,7 @@ form .contact_button:hover {
 
 /* ///////////////////////// Price TAG/////////////////// */
 
+/* Styles pour l'étiquette de prix dans la section du portfolio */
 .portofolio aside {
   position: sticky;
   bottom: 0;
@@ -345,11 +259,14 @@ form .contact_button:hover {
   font-size: clamp(20px, 2vw, 24px);
   background-color: var(--color-secondary);
 }
+
+/* Styles pour les icônes d'appréciation (likes) dans la section du portfolio */
 .photographer_likes .fas {
   margin-left: 0.5rem;
 }
-/* //////////////////PORTOFOLIO AREA /////////////////// */
 
+/* //////////////////PORTOFOLIO AREA /////////////////// */
+/* Styles pour la zone de portfolio */
 .gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -357,12 +274,14 @@ form .contact_button:hover {
   justify-items: center;
 }
 
+/* Styles pour chaque carte dans la galerie */
 .gallery_card {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
+/* Animation de fondu */
 @keyframes fade {
   from {
     opacity: 0;
@@ -373,25 +292,29 @@ form .contact_button:hover {
   }
 }
 
+/* Styles pour les liens dans chaque carte de la galerie */
 .gallery_card a {
   border-radius: 5px;
   overflow: hidden;
 }
 
+/* Styles pour la figure dans chaque lien de la carte de la galerie */
 .gallery_card a figure {
   /* height: 260px; */
   transition: all 0.2s ease-in-out;
 }
 
+/* Effet d'échelle au survol */
 .gallery_card a:hover figure {
   transform: scale(1.05);
 }
 
-/* on focus the outline is colored - this helps the accesibility part */
+/* Lorsqu'il est en focus, la bordure est colorée pour l'accessibilité */
 .gallery_card a:focus:not(:hover) {
   outline: 2px solid var(--color-secondary);
 }
 
+/* Styles pour les miniatures de la galerie */
 .gallery_thumbnail {
   width: 350px;
   height: 300px;
@@ -400,6 +323,7 @@ form .contact_button:hover {
   border-radius: 5px;
 }
 
+/* Styles pour la légende de la carte de la galerie */
 .gallery_card figcaption {
   display: flex;
   justify-content: space-between;
@@ -407,6 +331,7 @@ form .contact_button:hover {
   gap: 10px;
 }
 
+/* Styles pour le titre dans la légende de la carte de la galerie */
 .gallery_card figcaption h2 {
   color: var(--color-primary);
   font-size: 24px;
@@ -414,12 +339,14 @@ form .contact_button:hover {
   max-width: 270px;
 }
 
+/* Styles pour le nombre de likes dans la légende de la carte de la galerie */
 .gallery_card .nbLike {
   color: var(--color-primary);
   font-size: 24px;
   font-weight: 400;
 }
 
+/* Styles pour la section des likes dans la légende de la carte de la galerie */
 .gallery_card figcaption div {
   align-self: flex-start;
   display: flex;
@@ -429,6 +356,7 @@ form .contact_button:hover {
   font-size: clamp(1.8rem, 2vw, 2.2rem);
 }
 
+/* Styles pour le bouton de like */
 .btn_like {
   border-radius: 5px;
   padding: 0 1px;
@@ -437,15 +365,18 @@ form .contact_button:hover {
   color: var(--color-secondary);
 }
 
+/* Lorsqu'il est en focus, la bordure est colorée pour l'accessibilité */
 .btn_like:focus-visible:not(:hover) {
   outline: 2px solid var(--color-secondary);
 }
 
+/* Styles lorsque le bouton est aimé */
 .liked {
   color: var(--color-primary);
 }
 
 /* ///////////// PORTOFOLIO FILTER /////////////////// */
+/* Styles pour la section de filtre du portefeuille */
 .portofolio_filter {
   display: flex;
   align-items: center;
@@ -455,16 +386,19 @@ form .contact_button:hover {
   margin-left: 4%;
 }
 
+/* Styles pour le titre "Trier par" dans la section de filtre du portefeuille */
 h2 .trier_par {
   font-size: 18px;
   font-weight: 700;
 }
 
+/* Styles pour la section de filtre */
 .filter_section {
   position: relative;
   height: 100%;
 }
 
+/* Styles pour le menu déroulant */
 .dropdown {
   z-index: 10;
   position: absolute;
@@ -472,21 +406,25 @@ h2 .trier_par {
   overflow: hidden;
 }
 
+/* Styles pour la rotation de la flèche du bouton déroulant */
 .rotate {
   transform: rotate(180deg);
 }
 
+/* Styles pour le contenu du menu déroulant */
 .dropdown_content {
   max-height: 0;
   background-color: var(--color-primary);
   transition: max-height 0.1s ease-in-out;
 }
 
+/* Styles pour chaque élément de la liste du menu déroulant */
 .dropdown_content li {
   position: relative;
   width: 150px;
 }
 
+/* Styles pour la ligne séparatrice entre les éléments du menu déroulant */
 .dropdown_content li::before {
   content: "";
   position: absolute;
@@ -498,6 +436,7 @@ h2 .trier_par {
   background-color: var(--color-light);
 }
 
+/* Styles pour le bouton de menu déroulant et les boutons de la liste */
 .btn_drop,
 .dropdown_content li button {
   height: 50px;
@@ -507,6 +446,7 @@ h2 .trier_par {
   color: var(--color-light);
 }
 
+/* Styles pour le bouton de menu déroulant */
 .btn_drop {
   display: flex;
   justify-content: space-between;
@@ -515,11 +455,13 @@ h2 .trier_par {
   background-color: var(--color-primary);
 }
 
+/* Styles pour les boutons de la liste du menu déroulant */
 .dropdown_content li button {
   width: 100%;
   text-align: left;
 }
 
+/* Styles pour l'effet de survol/focus des boutons du menu déroulant */
 .dropdown_content li button:hover,
 .dropdown_content li button:focus,
 .btn_drop:hover,
@@ -528,11 +470,12 @@ h2 .trier_par {
   color: var(--color-black);
 }
 
+/* Styles pour l'effet de rideau du menu déroulant */
 .curtain_effect {
   max-height: 200px;
 }
 
-/* //////////////LIGHTBOX///////////*/
+/* ////////////////////////////////// LIGHTBOX //////////////////////////////// */
 .wrapper {
   z-index: 3000;
   display: none;
@@ -545,6 +488,7 @@ h2 .trier_par {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .lightbox {
   position: relative;
   display: flex;
@@ -561,6 +505,7 @@ h2 .trier_par {
   transform: translateY(-150px);
   animation: fadeIn 0.3s ease-in-out forwards;
 }
+
 .lightbox_media {
   display: flex;
   flex-direction: column;
@@ -593,6 +538,7 @@ h2 .trier_par {
   top: 25px;
   right: 5px;
 }
+
 .btn_close_lightbox img {
   color: var(--color-primary);
 }
@@ -646,6 +592,7 @@ h2 .trier_par {
 .btn_close_lightbox:hover::before {
   color: var(--color-secondary);
 }
+
 .btn_next.active::before,
 .btn_previous.active::before,
 .btn_close_lightbox.active::before {
@@ -660,43 +607,90 @@ h2 .trier_par {
   }
 }
 
-/* Tablet styles */
+/* ///////////////////////////////MEDIA QUERIES //////////////////////////////// */
+
+/* // STYLES POUR LES ÉCRANS DE BUREAU / */
+
+/* Styles pour les écrans plus grands que les tablettes */
+@media screen and (max-width: 1510px) {
+  .modal header h2 {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .modal {
+    padding: 15px;
+    gap: 40px;
+  }
+
+  .modal header h2 {
+    font-size: 42px;
+  }
+
+  form label {
+    font-size: 24px;
+  }
+
+  form input {
+    height: 45px;
+  }
+
+  form input,
+  form textarea {
+    max-width: none;
+    font-size: 24px;
+  }
+
+  .modal header img {
+    margin-left: 80px;
+  }
+}
+
 @media screen and (max-width: 1134px) {
   .photograph-header {
     padding-bottom: 30px;
   }
+
   .gallery_thumbnail {
     width: 320px;
     height: 250px;
   }
+
   .gallery_card figcaption h2 {
     max-width: 200px;
   }
+
   .photograph-header button {
     top: 85%;
     left: 120px;
   }
+
   .photograph-header .contact_button {
     font-family: inherit;
     font-size: 18px;
     height: 50px;
     width: 150px;
   }
+
   .photograph-header article a .photographer_thumbnail {
     height: 150px;
     width: 150px;
   }
 }
 
+/* ////// STYLES POUR LES TABLETTES ///////// */
 @media screen and (max-width: 1024px) {
   .gallery {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
   }
+
   .gallery_thumbnail {
     width: 300px;
     height: 230px;
   }
+
   .photograph-header button {
     top: 80%;
     left: 95px;
@@ -711,25 +705,108 @@ h2 .trier_par {
   .photograph-header article {
     position: relative;
     top: 40%;
-    margin: 0 20px; /* Adjust margin for tablet */
+    margin: 0 20px;
   }
 
   .photograph-header article a .photographer_name {
-    font-size: 42px; /* Adjust font size for tablet */
+    font-size: 42px;
   }
+
   .portofolio_filter h2 {
     font-size: 22px;
   }
 }
 
-/* Mobile styles */
+@media screen and (max-width: 962px) {
+  .modal {
+    gap: 20px;
+  }
+
+  form div {
+    margin-bottom: 0;
+  }
+
+  .modal header h2 {
+    font-size: 36px;
+  }
+
+  form label {
+    font-size: 18px;
+  }
+
+  form input,
+  form textarea {
+    font-size: 18px;
+  }
+
+  form textarea {
+    max-height: 100px;
+  }
+
+  .modal header img {
+    width: 32px;
+    height: 32px;
+  }
+
+  form .contact_button {
+    margin-top: 5px;
+    height: 40px;
+    width: 90px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 838px) {
+  .modal {
+    width: 60%;
+  }
+
+  .modal header h2 {
+    font-size: 34px;
+  }
+
+  .modal header img {
+    margin-left: 70px;
+  }
+}
+
+/* ////////// STYLES POUR LES TÉLÉPHONES PORTABLES /////////// */
 @media screen and (max-width: 720px) {
+  .modal {
+    gap: 0;
+    width: 90%;
+  }
+
+  .modal header {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .modal header h2 {
+    font-size: 28px;
+  }
+
+  .modal header img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .modal header {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  form div {
+    width: 100%;
+  }
+
   .portofolio aside {
     border-top-right-radius: 0%;
     border-top-left-radius: 0%;
     justify-content: center;
     width: 100%;
   }
+
   .gallery {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -738,9 +815,11 @@ h2 .trier_par {
   .gallery_card figcaption h2 {
     font-size: 18px;
   }
+
   .gallery_card .nbLike {
     font-size: 18px;
   }
+
   .fas {
     font-size: 20px;
   }
@@ -771,6 +850,7 @@ h2 .trier_par {
     top: 75%;
     left: 100px;
   }
+
   .photograph-header .contact_button {
     font-family: inherit;
     font-size: 16px;
@@ -786,6 +866,10 @@ h2 .trier_par {
     top: 10px;
     right: 10px;
     font-size: 8px;
+  }
+
+  .btn_close_lightbox::before {
+    font-size: 32px;
   }
 
   .lightbox_media figcaption {
@@ -812,6 +896,7 @@ h2 .trier_par {
     margin-left: auto;
     margin-right: auto;
   }
+
   .trier_par {
     border: 0;
     clip: rect(0 0 0 0);
@@ -822,9 +907,11 @@ h2 .trier_par {
     position: absolute;
     width: 1px;
   }
+
   .filter_section {
     margin-right: 150px;
   }
+
   .filter_section button {
     height: 40px;
     font-size: 18px;
@@ -834,24 +921,29 @@ h2 .trier_par {
     margin: 0 0 20px 0;
     padding: 0;
   }
+
   .photograph-header article {
     top: 65%;
     text-align: center;
     padding-bottom: 20px;
     margin-left: 0;
   }
+
   .photograph-header article .photographer_location {
     font-size: 18px;
     margin: 0;
   }
+
   .photograph-header article a .photographer_thumbnail {
     top: -115%;
     left: 50%;
     transform: translateX(-50%);
   }
+
   .photograph-header .photographer_tagline {
     font-size: 16px;
   }
+
   .photograph-header article a .photographer_name {
     font-size: 22px;
   }
@@ -862,14 +954,26 @@ h2 .trier_par {
   }
 }
 
+@media screen and (max-width: 450px) {
+  .modal {
+    width: 100%;
+  }
+
+  .modal header h2 {
+    font-size: 24px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .gallery_card {
     width: 100%;
   }
+
   .gallery_card figcaption {
     justify-content: space-around;
     gap: 0;
   }
+
   .gallery_card figcaption h2 {
     max-width: 160px;
   }

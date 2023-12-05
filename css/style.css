@@ -1,4 +1,7 @@
+/* Importe la feuille de style spécifique aux pages de photographe */
 @import url("photographer.css");
+
+/* Réinitialisation des styles de base */
 *,
 ::before,
 ::after {
@@ -7,6 +10,7 @@
   padding: 0;
 }
 
+/* Définition des variables de couleur */
 :root {
   --color-primary: #901c1c;
   --color-secondary: #db8876;
@@ -19,6 +23,7 @@
   --color-label: #312e2e;
 }
 
+/* Styles de base pour les boutons et les liens */
 button,
 a {
   cursor: pointer;
@@ -35,16 +40,19 @@ a {
   outline: none;
 }
 
+/* Styles pour les images et les vidéos */
 img,
 video {
   object-fit: cover;
   object-position: center;
 }
 
+/* Styles pour les listes */
 li {
   list-style-type: none;
 }
 
+/* Styles généraux du corps de la page */
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -55,6 +63,7 @@ body {
   min-height: 100vh;
 }
 
+/* Styles de l'en-tête de la page */
 header {
   display: flex;
   flex-direction: row;
@@ -63,16 +72,19 @@ header {
   height: 90px;
 }
 
+/* Styles pour le titre principal de la page */
 h1 {
   color: var(--color-primary);
   margin-right: 100px;
 }
 
+/* Styles pour le logo */
 .logo {
   height: 50px;
   margin-left: 100px;
 }
 
+/* Styles pour la section des photographes */
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -80,6 +92,7 @@ h1 {
   margin-top: 100px;
 }
 
+/* Styles pour chaque article de la section des photographes */
 .photographer_section article {
   justify-self: center;
   display: flex;
@@ -127,7 +140,7 @@ h1 {
   border-radius: 50%;
 }
 
-/* Tablet styles */
+/* Styles pour les tablettes */
 @media screen and (max-width: 1024px) {
   h1 {
     margin-right: 50px;
@@ -144,7 +157,7 @@ h1 {
   }
 }
 
-/* Mobile styles */
+/* Styles pour les dispositifs mobiles */
 @media screen and (max-width: 720px) {
   h1 {
     margin-left: 60px;

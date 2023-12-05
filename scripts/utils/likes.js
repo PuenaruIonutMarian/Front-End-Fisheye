@@ -1,33 +1,33 @@
-import { getPhotographerById } from "../pages/photographer.js";
+import { getPhotographerById } from '../pages/photographer.js'
 
 export const displayTotalLikes = async () => {
-    const { medias } = await getPhotographerById();
-    const allBtnLike = document.querySelectorAll(".btn_like");
-    const likesElement = document.querySelector(".photographer_likes_count");
+  const { medias } = await getPhotographerById()
+  const allBtnLike = document.querySelectorAll('.btn_like')
+  const likesElement = document.querySelector('.photographer_likes_count')
 
-    const updateTotalLikes = () => {
-        const totalLikes = medias.reduce((acc, media) => acc + media.likes, 0);
-        likesElement.textContent = `${totalLikes}`;
-    };
+  const updateTotalLikes = () => {
+    const totalLikes = medias.reduce((acc, media) => acc + media.likes, 0)
+    likesElement.textContent = `${totalLikes}`
+  }
 
-    updateTotalLikes();
+  updateTotalLikes()
 
-    allBtnLike.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const media = medias.find(media => media.id == btn.dataset.id);
+  allBtnLike.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const media = medias.find(media => media.id === btn.dataset.id)
 
-            if (!btn.classList.contains("liked")) {
-                media.likes++;
-            } else {
-                media.likes--;
-            }
+      if (!btn.classList.contains('liked')) {
+        media.likes++
+      } else {
+        media.likes--
+      }
 
-            btn.classList.toggle("liked");
+      btn.classList.toggle('liked')
 
-            const likesElement = btn.previousElementSibling;
-            likesElement.textContent = `${media.likes}`;
+      const likesElement = btn.previousElementSibling
+      likesElement.textContent = `${media.likes}`
 
-            updateTotalLikes();
-        });
-    });
-};
+      updateTotalLikes()
+    })
+  })
+}

@@ -20,23 +20,24 @@ export const openCloseFilterMenu = () => {
     });
 };
 
-
-
 export const displayMediaWithFilter = mediasTemplate => {
     const currentFilter = document.querySelector('#current_filter');
-    const allFilters = Array.from(document.querySelectorAll('.dropdown_content li button'));
+    const allFilters = Array.from(document.querySelectorAll('.dropdown_content li button'))
 
     let filterAlreadySelected = allFilters.find(filter => filter.textContent == currentFilter.textContent);
     filterAlreadySelected.style.display = 'none';
 
     allFilters.forEach(filter => {
         filter.addEventListener('click', () => {
+
             currentFilter.textContent = filter.textContent;
             if (filterAlreadySelected) filterAlreadySelected.style.display = 'block';
+
             filterAlreadySelected = filter;
             filterAlreadySelected.style.display = 'none';
+
             sortByFilter(filter.textContent);
-        });
+        })
     });
 
     const sortByFilter = filterValue => {
@@ -51,41 +52,22 @@ export const displayMediaWithFilter = mediasTemplate => {
                 mediasTemplate.medias.sort((a, b) => new Date(b.date) - new Date(a.date));
                 break;
         }
+        
 
-        // Clear existing media cards
-        const profilePageContent = document.querySelector(".main_content_medias");
+        const profilePageContent = document.querySelector(".portofolio");
         profilePageContent.innerHTML = '';
 
-        // Create and append new media cards
-        const gallerySection = document.createElement("section");
-        gallerySection.classList.add("gallery");
 
-        mediasTemplate.medias.forEach(media => {
-            const mediaCard = document.createElement("article");
-            mediaCard.classList.add("gallery_card");
-
-            // Create and append other elements (as before...)
-            
-            gallerySection.appendChild(mediaCard);
-        });
-
-        const asideElement = document.createElement("aside");
-        // Create and append aside (as before...)
-
-        profilePageContent.appendChild(gallerySection);
-        profilePageContent.appendChild(asideElement);
-
-        // Continue with your other logic (lightbox, total likes, animation)
         mediasTemplate.createPhotographerMedias();
-        const mediasFiltered = mediasTemplate;
-        displayLightbox(mediasFiltered);
+        const mediasfiltered = mediasTemplate;
+        displayLightbox(mediasfiltered);
         displayTotalLikes();
-
-        const mediaElements = document.querySelectorAll('.gallery_card');
+ 
+        const mediaElements = document.querySelectorAll('.portofolio');
         mediaElements.forEach((media, index) => {
             setTimeout(() => {
                 media.classList.add('animeCard');
             }, 100 * index);
-        });
+        });   
     };
 };

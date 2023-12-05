@@ -10,6 +10,7 @@ export const displayLightbox = medias => {
     const photographer = medias.photographer;
     const mediasList = medias.medias;
     let currentIndex = 0;
+    const lightbox = document.querySelector('.lightbox');
 
     mediaProvider.forEach(media => {
         media.addEventListener('click', () => {
@@ -22,47 +23,50 @@ export const displayLightbox = medias => {
         });
     });
 
-
 const lightboxTemplate = () => {
     const currentMedia = mediasList[currentIndex];
 
-    // Create a new figure element
-    const figureElement = document.createElement('figure');
+    // Create the image or video element based on the media type
+    const mediaElement = currentMedia.image
+        ? createImageElement(currentMedia)
+        : createVideoElement(currentMedia);
 
-    // Create either an image or video element based on media type
-    const mediaContent = currentMedia.image
-        ? document.createElement('img')
-        : document.createElement('video');
-
-    mediaContent.classList.add('lightbox_media');
-
-    if (currentMedia.image) {
-        mediaContent.src = `./assets/photographers/portofolio/${photographer.name}/${currentMedia.image}`;
-        mediaContent.alt = currentMedia.title;
-    } else {
-        mediaContent.controls = true;
-        mediaContent.setAttribute('aria-label', currentMedia.title);
-        const sourceElement = document.createElement('source');
-        sourceElement.src = `./assets/photographers/portofolio/${photographer.name}/${currentMedia.video}`;
-        sourceElement.type = 'video/mp4';
-        mediaContent.appendChild(sourceElement);
-    }
-
-    // Create figcaption element
-    const figcaptionElement = document.createElement('figcaption');
-    figcaptionElement.textContent = currentMedia.title;
-
-    // Append media content and figcaption to the figure element
-    figureElement.appendChild(mediaContent);
-    figureElement.appendChild(figcaptionElement);
-
-    // Clear existing content in the lightboxMedia container
+    // Clear existing content in lightboxMedia
     lightboxMedia.innerHTML = '';
 
-    // Append the figure element to the lightboxMedia container
-    lightboxMedia.appendChild(figureElement);
+    // Append the mediaElement and figcaption to lightboxMedia
+    lightboxMedia.appendChild(mediaElement);
+    lightboxMedia.appendChild(createFigcaptionElement(currentMedia.title));
 };
 
+// Function to create an image element
+const createImageElement = (media) => {
+    const imageElement = document.createElement('img');
+    imageElement.src = `./assets/photographers/portofolio/${photographer.name}/${media.image}`;
+    imageElement.alt = media.alt;
+    return imageElement;
+};
+
+// Function to create a video element
+const createVideoElement = (media) => {
+    const videoElement = document.createElement('video');
+    videoElement.controls = true;
+    videoElement.setAttribute('aria-label', media.alt);
+
+    const sourceElement = document.createElement('source');
+    sourceElement.src = `./assets/photographers/portofolio/${photographer.name}/${media.video}`;
+    sourceElement.type = 'video/mp4';
+
+    videoElement.appendChild(sourceElement);
+    return videoElement;
+};
+
+// Function to create a figcaption element
+const createFigcaptionElement = (title) => {
+    const figcaptionElement = document.createElement('figcaption');
+    figcaptionElement.textContent = title;
+    return figcaptionElement;
+};
 
 
     /////////////

@@ -7,21 +7,10 @@ function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
-export const openCloseFormContact = () => {
-    const contactBtn = document.querySelector(".btn_cta");
-    const contactModal = document.querySelector(".modal_wrapper");
-    const closeModal = document.querySelector(".btn_close");
-    
-    contactBtn.addEventListener("click", () => {
-        contactModal.style.display = "flex";
-        closeModal.focus();
-    });
-    
-    closeModal.addEventListener("click", () => contactModal.style.display = "none");
-};
 
-export const validateForm = () => {
-    const form = document.querySelector('.modal_form form');
+
+const validateForm = () => {
+    const form = document.querySelector('.modal form');
     const firstName = document.querySelector("#firstname");
     const lastName = document.querySelector("#lastname");
     const email = document.querySelector("#email");
@@ -42,6 +31,7 @@ export const validateForm = () => {
             console.log(JSON.stringify(formDatas));
             document.querySelectorAll('.formField').forEach(input => input.classList.remove('valid'));
             form.reset();
+            closeModal();
         }
     });
 

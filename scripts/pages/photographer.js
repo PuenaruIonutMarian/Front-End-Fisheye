@@ -1,15 +1,21 @@
+//Mettre le code JavaScript lié à la page photographer.html
 import Api from "../api/Api.js";
-import PhotographerHeader from "../templates/photographer.js";
-import PhotographerMedias from "../templates/portofolio.js";
 import Photographer from "../models/Photographer.js";
-import MediaTypeFactory from "../factories/MediaTypeFactory.js";
+import PhotographerTemplate from "../templates/photographer.js";
+import MediaFactory from "../factories/MediaFactory.js";
+import PhotographerMedias from "../templates/portofolio.js";
 import { displayTotalLikes } from "../utils/likes.js";
-import { openCloseFormContact, validateForm } from "../utils/Contactform.js";
 import { openCloseFilterMenu, displayMediaWithFilter } from "../utils/filter.js";
 import { displayLightbox } from "../utils/lightbox.js";
 
+
+
+
+
+const photographHeader = document.getElementsByClassName("photograph-header");
 const photographersApi = new Api("./data/photographers.json");
 const photographerId = new URLSearchParams(window.location.search).get("id");
+
 
 export const getPhotographerById = async () => {
     try {
@@ -18,7 +24,7 @@ export const getPhotographerById = async () => {
             .map(photographer => new Photographer(photographer))
             .find(photographer => photographer.id == photographerId);
         const medias = media
-            .map(media => new MediaTypeFactory(media))
+            .map(media => new MediaFactory(media))
             .filter(media => media.photographerId == photographerId);
         return { photographer, medias };
     } catch (error) {
@@ -35,23 +41,23 @@ const displayProfilePage = async () => {
             return;
         }
 
-        const headerTemplate = new PhotographerHeader(photographer);
-        headerTemplate.createPhotographerHeader();
+        const headerTemplate = new PhotographerTemplate(photographer);
+        headerTemplate.getUserCardDOM();
+        photographHeader[0].appendChild(headerTemplate.getUserCardDOM());
         const mediasTemplate = new PhotographerMedias(photographer, medias);
         mediasTemplate.createPhotographerMedias();
-        // console.log(mediasTemplate);
+        
 
         displayTotalLikes();
-        openCloseFormContact();
         validateForm();
         openCloseFilterMenu();
         displayMediaWithFilter(mediasTemplate);
         displayLightbox(mediasTemplate);
+   
     } catch (error) {
         console.error("Error displaying profile page:", error);
     }
 };
 
 displayProfilePage();
-
 

@@ -1,148 +1,463 @@
-/* MAIN */
-main {
-  padding: 0 120px;
-}
+/* ///////////////// CONTACT FORM///////////// */
 
-.main_about {
-  display: flex;
-  justify-content: space-between;
+/* ///////BUTTON///// */
+#contact_modal {
+  display: none;
+  z-index: 2000;
+  justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 40px;
-  margin-top: 20px;
-  background-color: var(--color-light-medium);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.btn_cta:hover,
-.btn_cta:focus {
+button {
+  font-family: "DM Sans", sans-serif;
+}
+.contact_button {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.contact_button:hover,
+.contact_button:focus {
   background-color: var(--color-secondary);
   color: var(--color-black);
 }
 
-.photographer_profile__infos {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.photographer_thumbnail {
-  height: clamp(10rem, 20vw, 20rem);
-  width: clamp(10rem, 20vw, 20rem);
-}
-
-/* MAIN CONTENT */
-
-/* MODAL FORM */
-.modal_form {
-  position: relative;
+/* /////////FORM//////// */
+.modal {
   border-radius: 5px;
-  background-color: var(--color-secondary);
+  background-color: #db8876;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 20px;
-  width: 90%;
-  max-width: 600px;
-  opacity: 0;
-  transform: translateY(-150px);
+  padding: 35px;
+  margin: auto;
   animation: fadeIn 0.3s ease-in-out forwards;
+  gap: 50px;
 }
 
-.modal_form_title {
-  width: 100%;
-  font-size: clamp(2rem, 3vw, 4rem);
-}
-
-.modal_form_title h2 {
-  display: flex;
+.modal_header {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* margin-bottom: 70px; */
   justify-content: space-between;
-  align-items: center;
-  font-weight: normal;
-  font-size: clamp(2rem, 3vw, 4rem);
-}
-
-.btn_close:hover::before {
-  color: var(--color-primary);
-}
-/* .btn_close:focus:not(:hover)::before{
-    outline: 2px solid var(--color-primary);
-} */
-
-.btn_close::before {
-  content: "\f00d";
-  font-family: "Font Awesome 5 Free";
-  padding: 5px;
-  border-radius: 5px;
-  font-weight: 900;
-  color: var(--color-light);
-  font-size: clamp(2rem, 3vw, 3rem);
-}
-
-.modal_form form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   width: 100%;
 }
 
-.form_content {
+.contact_me {
+  grid-column: 1 / span 2;
+}
+
+.modal_header img {
+  cursor: pointer;
+  grid-column: 3 / span 1;
+  justify-self: end;
+}
+
+.modal_form_name {
+  grid-column: 1 / span 3;
+}
+
+.modal header h2 {
+  font-size: 4rem;
+  font-weight: normal;
+}
+
+form {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label {
+  color: #312e2e;
+  font-size: 36px;
+}
+
+form div {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  width: 100%;
+  align-items: self-start;
+  margin-bottom: 26px;
 }
 
-.form_content label {
-  color: var(--color-label);
-  font-size: clamp(1.8rem, 2vw, 2rem);
-}
-
-.form_content input {
-  height: 50px;
-  padding-left: 10px;
+form input {
+  width: 100%;
+  height: 68px;
   border: none;
   border-radius: 5px;
+  font-size: 36px;
 }
 
-.form_content textarea {
+form textarea {
+  width: 100%;
   border-radius: 5px;
   height: 150px;
   resize: none;
   padding: 10px;
 }
 
-.form_content span {
-  color: var(--color-dark);
-  font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+form span {
+  /* color: var(--color-dark); */
+  color: var(--color-primary);
+  font-size: clamp(12px, 1.6vw, 22px);
 }
 
-.form_content input:invalid:focus,
-.form_content textarea:invalid:focus {
+form input:invalid:focus,
+form textarea:invalid:focus {
+  outline: 2px solid var(--color-primary);
+}
+form .contact_button:hover {
+  background-color: green;
+}
+
+.invalid {
   outline: 2px solid var(--color-primary);
 }
 
-.btn_submit {
-  max-width: 150px;
+.valid {
+  outline: 2px solid green;
 }
 
-.btn_submit:hover,
-.btn_submit:focus {
-  outline: 2px solid var(--color-light);
+/* Styles for larger screens, like tablets */
+@media screen and (max-width: 1510px) {
+  .modal header h2 {
+    font-size: 50px;
+  }
+}
+@media screen and (max-width: 1240px) {
+  .modal {
+    /* width: 40%; */
+    padding: 15px;
+    gap: 40px;
+  }
+  .modal header h2 {
+    font-size: 42px;
+  }
+  form label {
+    font-size: 24px;
+  }
+
+  form input {
+    height: 45px;
+  }
+
+  form input,
+  form textarea {
+    max-width: none;
+    font-size: 24px;
+  }
+  .modal header img {
+    margin-left: 80px;
+  }
 }
 
-/* MEDIA FILTER */
-.main_content_filter {
+@media screen and (max-width: 962px) {
+  .modal {
+    gap: 20px;
+  }
+  form div {
+    margin-bottom: 0;
+  }
+  .modal header h2 {
+    font-size: 36px;
+  }
+  form label {
+    font-size: 18px;
+  }
+  form input,
+  form textarea {
+    font-size: 18px;
+  }
+  form textarea {
+    max-height: 100px;
+  }
+  .modal header img {
+    width: 32px;
+    height: 32px;
+  }
+  form .contact_button {
+    margin-top: 5px;
+    height: 40px;
+    width: 90px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 838px) {
+  .modal {
+    width: 60%;
+  }
+
+  .modal header h2 {
+    font-size: 34px;
+  }
+  .modal header img {
+    margin-left: 70px;
+  }
+}
+/* Styles for smaller screens, like mobile devices */
+@media screen and (max-width: 720px) {
+  .modal {
+    gap: 0;
+    width: 90%;
+  }
+  .modal header {
+    flex-direction: row;
+    /* align-items: left; */
+    gap: 0;
+  }
+  .modal header h2 {
+    font-size: 28px;
+  }
+  .modal header img {
+    /* margin-left: 0; */
+    width: 24px;
+    height: 24px;
+  }
+  .modal header {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  form div {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .modal {
+    width: 100%;
+  }
+  .modal header h2 {
+    font-size: 24px;
+  }
+}
+/* //////////////USER PRESENTATION /////////////////////// */
+.photograph-header {
+  background-color: var(--color-light-medium);
+  height: 300px;
+  margin: 0 100px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.photograph-header article {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 50px 0 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.photograph-header article a {
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.photograph-header article a .photographer_name {
+  color: var(--color-tertiary);
+  font-family: DM Sans;
+  font-size: 64px;
+  font-weight: 400;
+}
+
+.photograph-header article a .photographer_thumbnail {
+  position: absolute;
+  right: 0;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.photograph-header article .photographer_location {
+  color: var(--color-primary);
+  font-family: DM Sans;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.photograph-header .photographer_tagline {
+  color: var(--color-dark-gray);
+  font-size: 18px;
+}
+
+/* display none for the pricetag */
+.photograph-header .photographer_price {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.photograph-header button {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ///////////////////////// Price TAG/////////////////// */
+
+.portofolio aside {
+  position: sticky;
+  bottom: 0;
+  left: 100%;
   display: flex;
   align-items: center;
-  height: 50px;
+  gap: 20px;
+  height: 60px;
+  width: 25%;
+  padding: 20px;
+  margin-top: 20px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 24px);
+  background-color: var(--color-secondary);
+}
+.photographer_likes .fas {
+  margin-left: 0.5rem;
+}
+/* //////////////////PORTOFOLIO AREA /////////////////// */
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  justify-items: center;
+}
+
+.gallery_card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.gallery_card a {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.gallery_card a figure {
+  /* height: 260px; */
+  transition: all 0.2s ease-in-out;
+}
+
+.gallery_card a:hover figure {
+  transform: scale(1.05);
+}
+
+/* on focus the outline is colored - this helps the accesibility part */
+.gallery_card a:focus:not(:hover) {
+  outline: 2px solid var(--color-secondary);
+}
+
+.gallery_thumbnail {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 5px;
+}
+
+.gallery_card figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
 }
 
-h2 {
+.gallery_card figcaption h2 {
+  color: var(--color-primary);
+  font-size: 24px;
+  font-weight: 400;
+  max-width: 270px;
+}
+
+.gallery_card .nbLike {
+  color: var(--color-primary);
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.gallery_card figcaption div {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-primary);
+  font-size: clamp(1.8rem, 2vw, 2.2rem);
+}
+
+.btn_like {
+  border-radius: 5px;
+  padding: 0 1px;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 2vw, 2.4rem);
+  color: var(--color-secondary);
+}
+
+.btn_like:focus-visible:not(:hover) {
+  outline: 2px solid var(--color-secondary);
+}
+
+.liked {
+  color: var(--color-primary);
+}
+
+/* ///////////// PORTOFOLIO FILTER /////////////////// */
+.portofolio_filter {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  gap: 10px;
+  margin-bottom: 50px;
+  margin-left: 4%;
+}
+
+h2 .trier_par {
+  font-size: 18px;
   font-weight: 700;
-  line-height: normal;
-  font-size: clamp(1.6rem, 3vw, 1.8rem);
 }
 
 .filter_section {
@@ -187,7 +502,7 @@ h2 {
 .dropdown_content li button {
   height: 50px;
   padding: 15px;
-  font-size: clamp(1.6rem, 1.8vw, 1.8rem);
+  font-size: 18px;
   font-weight: 700;
   color: var(--color-light);
 }
@@ -217,130 +532,19 @@ h2 {
   max-height: 200px;
 }
 
-/* MEDIA GALLERY */
-.main_content {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-.gallery {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px 60px;
-}
-
-.gallery_card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.animeCard {
-  animation: fade 0.2s ease-in-out;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.gallery_card a {
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.gallery_card a figure {
-  height: 260px;
-  transition: all 0.2s ease-in-out;
-}
-
-.gallery_card a:hover figure {
-  transform: scale(1.05);
-}
-
-.gallery_card a:focus:not(:hover) {
-  outline: 2px solid var(--color-secondary);
-}
-
-.gallery_thumbnail {
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-  /* will-change: transform; */
-  object-fit: cover;
-  object-position: center 30%;
-}
-
-.gallery_card figcaption {
-  display: flex;
-  justify-content: space-between;
+/* //////////////LIGHTBOX///////////*/
+.wrapper {
+  z-index: 3000;
+  display: none;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-}
-
-.gallery_card figcaption h2 {
-  font-weight: 400;
-  color: var(--color-primary);
-  font-size: clamp(1.8rem, 2vw, 2.4rem);
-}
-
-.gallery_card figcaption div {
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--color-primary);
-  font-size: clamp(1.8rem, 2vw, 2.2rem);
-}
-
-.btn_like {
-  border-radius: 5px;
-  padding: 0 1px;
-  font-weight: 400;
-  font-size: clamp(1.8rem, 2vw, 2.4rem);
-  color: var(--color-secondary);
-}
-
-.btn_like:focus-visible:not(:hover) {
-  outline: 2px solid var(--color-secondary);
-}
-
-.liked {
-  color: var(--color-primary);
-}
-
-/* Daily box */
-aside {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  height: 50px;
-  width: fit-content;
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: clamp(1.6rem, 2vw, 2rem);
-  background-color: var(--color-secondary);
-
   position: fixed;
-  bottom: -3px;
-  right: 10vw;
-
-  flex-shrink: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
-.fas {
-  margin-left: 0.5rem;
-}
-/* Lightbox */
 .lightbox {
   position: relative;
   display: flex;
@@ -357,7 +561,6 @@ aside {
   transform: translateY(-150px);
   animation: fadeIn 0.3s ease-in-out forwards;
 }
-
 .lightbox_media {
   display: flex;
   flex-direction: column;
@@ -377,9 +580,7 @@ aside {
 .lightbox_media img,
 .lightbox_media video {
   width: 100%;
-  /* height: calc(100% - 50px); */
-  object-fit: cover;
-  height: 70%;
+  height: calc(100% - 50px);
 }
 
 .lightbox_media video:focus {
@@ -392,9 +593,12 @@ aside {
   top: 25px;
   right: 5px;
 }
+.btn_close_lightbox img {
+  color: var(--color-primary);
+}
 
 .btn_close_lightbox::before {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: 72px;
   color: var(--color-primary);
 }
 
@@ -442,15 +646,6 @@ aside {
 .btn_close_lightbox:hover::before {
   color: var(--color-secondary);
 }
-
-.invalid {
-  outline: 2px solid var(--color-primary);
-}
-
-.valid {
-  outline: 2px solid green;
-}
-
 .btn_next.active::before,
 .btn_previous.active::before,
 .btn_close_lightbox.active::before {
@@ -465,45 +660,122 @@ aside {
   }
 }
 
-/* RESPONSIVE */
-@media screen and (max-width: 1110px) {
-  header {
-    padding: 0 20px;
+/* Tablet styles */
+@media screen and (max-width: 1134px) {
+  .photograph-header {
+    padding-bottom: 30px;
   }
-  main {
-    padding: 0 20px;
+  .gallery_thumbnail {
+    width: 320px;
+    height: 250px;
   }
-  .main_about {
-    justify-content: space-around;
-    padding: 20px;
+  .gallery_card figcaption h2 {
+    max-width: 200px;
+  }
+  .photograph-header button {
+    top: 85%;
+    left: 120px;
+  }
+  .photograph-header .contact_button {
+    font-family: inherit;
+    font-size: 18px;
+    height: 50px;
+    width: 150px;
+  }
+  .photograph-header article a .photographer_thumbnail {
+    height: 150px;
+    width: 150px;
   }
 }
 
-@media screen and (max-width: 725px) {
-  .btn_cta {
-    z-index: 10;
-    position: absolute;
-    top: 30px;
-    right: 40px;
+@media screen and (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  .gallery_thumbnail {
+    width: 300px;
+    height: 230px;
+  }
+  .photograph-header button {
+    top: 80%;
+    left: 95px;
   }
 
-  .modal_form {
-    padding: 10px;
-    gap: 5px;
-    max-height: 100%;
-    overflow: auto;
+  .photograph-header {
+    margin: 0 50px 20px 50px;
+    padding-bottom: 0;
+    height: 250px;
   }
 
-  .modal_form form {
-    gap: 5px;
+  .photograph-header article {
+    position: relative;
+    top: 40%;
+    margin: 0 20px; /* Adjust margin for tablet */
   }
 
-  .form_content input {
+  .photograph-header article a .photographer_name {
+    font-size: 42px; /* Adjust font size for tablet */
+  }
+  .portofolio_filter h2 {
+    font-size: 22px;
+  }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 720px) {
+  .portofolio aside {
+    border-top-right-radius: 0%;
+    border-top-left-radius: 0%;
+    justify-content: center;
+    width: 100%;
+  }
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .gallery_card figcaption h2 {
+    font-size: 18px;
+  }
+  .gallery_card .nbLike {
+    font-size: 18px;
+  }
+  .fas {
+    font-size: 20px;
+  }
+
+  .photographer_header_logo {
+    margin-bottom: 0;
+  }
+
+  .photograph-header {
+    margin: 0;
+    padding: 20px;
+  }
+
+  .photograph-header article {
+    margin: 0 10px;
+  }
+
+  .photograph-header article a .photographer_name {
+    font-size: 24px;
+  }
+
+  .photograph-header article a .photographer_thumbnail {
+    height: 100px;
+    width: 100px;
+  }
+
+  .photograph-header button {
+    top: 75%;
+    left: 100px;
+  }
+  .photograph-header .contact_button {
+    font-family: inherit;
+    font-size: 16px;
     height: 40px;
-  }
-
-  .form_content textarea {
-    height: 80px;
+    width: 140px;
   }
 
   .lightbox {
@@ -513,6 +785,7 @@ aside {
   .btn_close_lightbox {
     top: 10px;
     right: 10px;
+    font-size: 8px;
   }
 
   .lightbox_media figcaption {
@@ -532,43 +805,72 @@ aside {
   }
 }
 
-@media screen and (max-width: 570px) {
-  header {
+@media screen and (max-width: 500px) {
+  .portofolio_filter {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .trier_par {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .filter_section {
+    margin-right: 150px;
+  }
+  .filter_section button {
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .photograph-header {
+    margin: 0 0 20px 0;
     padding: 0;
   }
-  .photographer_profile__infos {
-    gap: 2px;
+  .photograph-header article {
+    top: 65%;
+    text-align: center;
+    padding-bottom: 20px;
+    margin-left: 0;
   }
-  .btn_cta {
-    right: 20px;
+  .photograph-header article .photographer_location {
+    font-size: 18px;
+    margin: 0;
   }
-  main {
-    padding: 0;
+  .photograph-header article a .photographer_thumbnail {
+    top: -115%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .photograph-header .photographer_tagline {
+    font-size: 16px;
+  }
+  .photograph-header article a .photographer_name {
+    font-size: 22px;
+  }
+
+  .photograph-header button {
+    top: 87%;
+    left: 50%;
   }
 }
 
-@media screen and (max-width: 445px) {
-  .page {
-    padding: 10px;
+@media screen and (max-width: 320px) {
+  .gallery_card {
+    width: 100%;
   }
-  .main_about {
-    justify-content: space-between;
-    padding: 10px;
+  .gallery_card figcaption {
+    justify-content: space-around;
+    gap: 0;
   }
-  .main_content {
-    gap: 20px;
-    margin-top: 20px;
+  .gallery_card figcaption h2 {
+    max-width: 160px;
   }
-  .gallery {
-    gap: 20px;
-  }
-  .btn_cta {
-    top: 10px;
-    right: 10px;
-  }
-}
-
-/* ///////////////////DE MODIFICAT */
-.photographer_tagline2 {
-  color: var(--color-darkest-gray);
 }

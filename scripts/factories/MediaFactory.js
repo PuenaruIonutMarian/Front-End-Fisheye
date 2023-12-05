@@ -4,7 +4,7 @@ import Video from '../models/Video.js';
 /**
  * Classe représentant une Media Factory Dessing Pattern.
  */
-export default class MediaTypeFactory {
+export default class MediaFactory {
     /**
      * Crée une instance de la media factory.
      * @param {object} data - Les données à utiliser pour créer le type de média.

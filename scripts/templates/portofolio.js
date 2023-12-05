@@ -6,119 +6,121 @@ export default class PhotographerMedias {
 
     createPhotographerMedias() {
 
-const profilePageContent = document.querySelector(".main_content_medias");
+        const profilePageContent = document.querySelector(".portofolio");
 
-// Create the main section element
-const gallerySection = document.createElement("section");
-gallerySection.classList.add("gallery");
+        // Create the main section element
+        const gallerySection = document.createElement("section");
+        gallerySection.classList.add("gallery");
 
-// Iterate through the medias and create gallery cards
-this.medias.forEach(media => {
-    // Create article element
-    const mediaCard = document.createElement("article");
-    mediaCard.classList.add("gallery_card");
+        // Iterate through the medias and create gallery cards
+        this.medias.forEach(media => {
+            // Create article element
+            const mediaCard = document.createElement("article");
+            mediaCard.classList.add("gallery_card");
 
-    // Create link element
-    const linkElement = document.createElement("a");
-    linkElement.href = "#";
-    linkElement.dataset.media = media.id;
-    linkElement.setAttribute("role", "link");
-    linkElement.setAttribute("aria-label", "View media large");
+            // Create link element
+            const linkElement = document.createElement("a");
+            linkElement.href = "#";
+            linkElement.dataset.media = media.id;
+            linkElement.setAttribute("role", "link");
+            linkElement.setAttribute("aria-label", "View media large");
 
-    // Create figure element
-    const figureElement = document.createElement("figure");
+            // Create figure element
+            const figureElement = document.createElement("figure");
 
-    // Create either an image or video element based on media type
-    const mediaContent = media.image
-        ? document.createElement("img")
-        : document.createElement("video");
+            // Create either an image or video element based on media type
+            const mediaContent = media.image ?
+                document.createElement("img") :
+                document.createElement("video");
 
-    mediaContent.classList.add("gallery_thumbnail");
+            mediaContent.classList.add("gallery_thumbnail");
 
-    if (media.image) {
-        mediaContent.src = `./assets/photographers/portofolio/${this.photographer.name}/${media.image}`;
-        mediaContent.alt = media.title;
-    } else {
-        mediaContent.src = `./assets/photographers/portofolio/${this.photographer.name}/${media.video}`;
-        mediaContent.type = "video/mp4";
-        mediaContent.setAttribute("aria-label", media.title);
-    }
+            if (media.image) {
+                mediaContent.src = `./assets/photographers/portofolio/${this.photographer.name}/${media.image}`;
+                mediaContent.alt = media.title;
+            } else {
+                mediaContent.src = `./assets/photographers/portofolio/${this.photographer.name}/${media.video}`;
+                mediaContent.type = "video/mp4";
+                mediaContent.setAttribute("aria-label", media.title);
+            }
 
-    // Create figcaption element
-    const figcaptionElement = document.createElement("figcaption");
-    
-    // Create h2 element
-    const h2Element = document.createElement("h2");
-    h2Element.textContent = media.title;
+            // Create figcaption element
+            const figcaptionElement = document.createElement("figcaption");
 
-    // Create div element for likes
-    const likesContainer = document.createElement("div");
-    likesContainer.setAttribute("role", "group");
-    likesContainer.setAttribute("aria-label", "Like button and number of likes");
+            // Create h2 element
+            const h2Element = document.createElement("h2");
+            h2Element.textContent = media.title;
 
-    // Create span element for number of likes
-    const nbLikeElement = document.createElement("span");
-    nbLikeElement.classList.add("nbLike");
-    nbLikeElement.textContent = media.likes;
+            // Create div element for likes
+            const likesContainer = document.createElement("div");
+            likesContainer.setAttribute("role", "group");
+            likesContainer.setAttribute("aria-label", "Like button and number of likes");
 
-    // Create like button element
-    const likeButton = document.createElement("button");
-    likeButton.classList.add("btn_like");
-    likeButton.setAttribute("type", "button");
-    likeButton.setAttribute("aria-label", "Like");
-    likeButton.dataset.id = media.id;
+            // Create span element for number of likes
+            const nbLikeElement = document.createElement("span");
+            nbLikeElement.classList.add("nbLike");
+            nbLikeElement.textContent = media.likes;
 
-    // Create heart icon element
-    const heartIcon = document.createElement("span");
-    heartIcon.classList.add("fas", "fa-heart");
-    heartIcon.setAttribute("aria-hidden", "true");
+            // Create like button element
+            const likeButton = document.createElement("button");
+            likeButton.classList.add("btn_like");
+            likeButton.setAttribute("type", "button");
+            likeButton.setAttribute("aria-label", "Like");
+            likeButton.dataset.id = media.id;
 
-    // Append elements to their respective containers
-    likeButton.appendChild(heartIcon);
-    likesContainer.appendChild(nbLikeElement);
-    likesContainer.appendChild(likeButton);
-    figcaptionElement.appendChild(h2Element);
-    figcaptionElement.appendChild(likesContainer);
-    figureElement.appendChild(mediaContent);
-    linkElement.appendChild(figureElement);
-    mediaCard.appendChild(linkElement);
-    mediaCard.appendChild(figcaptionElement);
+            // Create heart icon element
+            const heartIcon = document.createElement("span");
+            heartIcon.classList.add("fas", "fa-heart");
+            heartIcon.setAttribute("aria-hidden", "true");
 
-    // Append the media card to the gallery section
-    gallerySection.appendChild(mediaCard);
-});
+            // Append elements to their respective containers
+            likeButton.appendChild(heartIcon);
+            likesContainer.appendChild(nbLikeElement);
+            likesContainer.appendChild(likeButton);
+            figcaptionElement.appendChild(h2Element);
+            figcaptionElement.appendChild(likesContainer);
+            figureElement.appendChild(mediaContent);
+            linkElement.appendChild(figureElement);
+            mediaCard.appendChild(linkElement);
+            mediaCard.appendChild(figcaptionElement);
 
-// Create the aside element
-const asideElement = document.createElement("aside");
+            // Append the media card to the gallery section
+            gallerySection.appendChild(mediaCard);
+        });
 
-// Create the photographer likes paragraph
-const photographerLikesParagraph = document.createElement("p");
-photographerLikesParagraph.classList.add("photographer_likes");
+        // Create the aside element
+        const asideElement = document.createElement("aside");
 
-// Create span element for photographer likes count
-const photographerLikesCount = document.createElement("span");
-photographerLikesCount.classList.add("photographer_likes_count");
+        // Create the photographer likes paragraph
+        const photographerLikesParagraph = document.createElement("p");
+        photographerLikesParagraph.classList.add("photographer_likes");
 
-// Create heart icon element for aside
-const heartIconAside = document.createElement("span");
-heartIconAside.classList.add("fas", "fa-heart");
-heartIconAside.setAttribute("aria-hidden", "true");
+        // Create span element for photographer likes count
+        const photographerLikesCount = document.createElement("span");
+        photographerLikesCount.classList.add("photographer_likes_count");
 
-// Append elements to the aside container
-photographerLikesParagraph.appendChild(photographerLikesCount);
-photographerLikesParagraph.appendChild(heartIconAside);
-asideElement.appendChild(photographerLikesParagraph);
+        // Create heart icon element for aside
+        const heartIconAside = document.createElement("span");
+        heartIconAside.classList.add("fas", "fa-heart");
+        heartIconAside.setAttribute("aria-hidden", "true");
 
-// Create span element for price
-const priceSpan = document.createElement("span");
-priceSpan.textContent = `${this.photographer.price}€ / jour`;
-asideElement.appendChild(priceSpan);
+        // Append elements to the aside container
+        photographerLikesParagraph.appendChild(photographerLikesCount);
+        photographerLikesParagraph.appendChild(heartIconAside);
+        asideElement.appendChild(photographerLikesParagraph);
 
-// Append the main section and aside to the profile page content
-// gallerySection.appendChild(asideElement);
-profilePageContent.appendChild(gallerySection);
-profilePageContent.appendChild(asideElement);
+        // Create span element for price
+        const priceSpan = document.createElement("span");
+        priceSpan.textContent = `${this.photographer.price}€ / jour`;
+        asideElement.appendChild(priceSpan);
 
+        // Append the main section and aside to the profile page content
+        // gallerySection.appendChild(asideElement);
+        profilePageContent.appendChild(gallerySection);
+        profilePageContent.appendChild(asideElement);
+        // Set photographer name in the form
+        const formName = document.querySelector(".modal_form_name");
+        formName.textContent = this.photographer.name;
 
     }
 }

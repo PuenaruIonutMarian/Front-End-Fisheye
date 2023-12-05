@@ -1,33 +1,50 @@
+/**
+ * Représente un template pour la création de la section des médias d'un photographe sur la page de profil.
+ */
 export default class PhotographerMedias {
+  /**
+   * Initialise une nouvelle instance du template avec les données du photographe et les médias associés.
+   * @param {Object} photographer - Les données du photographe.
+   * @param {Object[]} medias - Les données des médias associés au photographe.
+   * @param {number} medias.id - L'identifiant unique du média.
+   * @param {string} medias.title - Le titre du média.
+   * @param {string} medias.image - Le chemin vers l'image du média.
+   * @param {string} medias.video - Le chemin vers la vidéo du média.
+   * @param {number} medias.likes - Le nombre de "likes" du média.
+   */
   constructor (photographer, medias) {
     this.photographer = photographer
     this.medias = medias
   }
 
+  /**
+   * Crée et affiche la section des médias du photographe sur la page de profil.
+   * @returns {void}
+   */
   createPhotographerMedias () {
     const profilePageContent = document.querySelector('.portofolio')
 
-    // Create the main section element
+    // Crée l'élément principal de la section
     const gallerySection = document.createElement('section')
     gallerySection.classList.add('gallery')
 
-    // Iterate through the medias and create gallery cards
+    // Itère sur les médias et crée des cartes pour la galerie
     this.medias.forEach(media => {
-      // Create article element
+      // Crée l'élément article
       const mediaCard = document.createElement('article')
       mediaCard.classList.add('gallery_card')
 
-      // Create link element
+      // Crée l'élément lien
       const linkElement = document.createElement('a')
       linkElement.href = '#'
       linkElement.dataset.media = media.id
       linkElement.setAttribute('role', 'link')
-      linkElement.setAttribute('aria-label', 'View media large')
+      linkElement.setAttribute('aria-label', 'Voir le média en grand')
 
-      // Create figure element
+      // Crée l'élément figure
       const figureElement = document.createElement('figure')
 
-      // Create either an image or video element based on media type
+      // Crée soit un élément image, soit vidéo en fonction du type de média
       const mediaContent = media.image
         ? document.createElement('img')
         : document.createElement('video')
@@ -43,36 +60,36 @@ export default class PhotographerMedias {
         mediaContent.setAttribute('aria-label', media.title)
       }
 
-      // Create figcaption element
+      // Crée l'élément figcaption
       const figcaptionElement = document.createElement('figcaption')
 
-      // Create h2 element
+      // Crée l'élément h2
       const h2Element = document.createElement('h2')
       h2Element.textContent = media.title
 
-      // Create div element for likes
+      // Crée l'élément div pour les "likes"
       const likesContainer = document.createElement('div')
       likesContainer.setAttribute('role', 'group')
-      likesContainer.setAttribute('aria-label', 'Like button and number of likes')
+      likesContainer.setAttribute('aria-label', 'Bouton "Like" et nombre de "likes"')
 
-      // Create span element for number of likes
+      // Crée l'élément span pour le nombre de "likes"
       const nbLikeElement = document.createElement('span')
       nbLikeElement.classList.add('nbLike')
       nbLikeElement.textContent = media.likes
 
-      // Create like button element
+      // Crée le bouton "Like"
       const likeButton = document.createElement('button')
       likeButton.classList.add('btn_like')
       likeButton.setAttribute('type', 'button')
       likeButton.setAttribute('aria-label', 'Like')
       likeButton.dataset.id = media.id
 
-      // Create heart icon element
+      // Crée l'icône de cœur
       const heartIcon = document.createElement('span')
       heartIcon.classList.add('fas', 'fa-heart')
       heartIcon.setAttribute('aria-hidden', 'true')
 
-      // Append elements to their respective containers
+      // Ajoute les éléments à leurs conteneurs respectifs
       likeButton.appendChild(heartIcon)
       likesContainer.appendChild(nbLikeElement)
       likesContainer.appendChild(likeButton)
@@ -83,41 +100,41 @@ export default class PhotographerMedias {
       mediaCard.appendChild(linkElement)
       mediaCard.appendChild(figcaptionElement)
 
-      // Append the media card to the gallery section
+      // Ajoute la carte média à la section de la galerie
       gallerySection.appendChild(mediaCard)
     })
 
-    // Create the aside element
+    // Crée l'élément aside
     const asideElement = document.createElement('aside')
 
-    // Create the photographer likes paragraph
+    // Crée le paragraphe des "likes" du photographe
     const photographerLikesParagraph = document.createElement('p')
     photographerLikesParagraph.classList.add('photographer_likes')
 
-    // Create span element for photographer likes count
+    // Crée l'élément span pour le nombre de "likes" du photographe
     const photographerLikesCount = document.createElement('span')
     photographerLikesCount.classList.add('photographer_likes_count')
 
-    // Create heart icon element for aside
+    // Crée l'icône de cœur pour l'élément aside
     const heartIconAside = document.createElement('span')
     heartIconAside.classList.add('fas', 'fa-heart')
     heartIconAside.setAttribute('aria-hidden', 'true')
 
-    // Append elements to the aside container
+    // Ajoute les éléments au conteneur de l'aside
     photographerLikesParagraph.appendChild(photographerLikesCount)
     photographerLikesParagraph.appendChild(heartIconAside)
     asideElement.appendChild(photographerLikesParagraph)
 
-    // Create span element for price
+    // Crée l'élément span pour le prix
     const priceSpan = document.createElement('span')
     priceSpan.textContent = `${this.photographer.price}€ / jour`
     asideElement.appendChild(priceSpan)
 
-    // Append the main section and aside to the profile page content
-    // gallerySection.appendChild(asideElement);
+    // Ajoute la section principale et l'aside au contenu de la page de profil
     profilePageContent.appendChild(gallerySection)
     profilePageContent.appendChild(asideElement)
-    // Set photographer name in the form
+
+    // Définit le nom du photographe dans le formulaire
     const formName = document.querySelector('.modal_form_name')
     formName.textContent = this.photographer.name
   }

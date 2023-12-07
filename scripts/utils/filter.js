@@ -34,34 +34,14 @@ export const openCloseFilterMenu = () => {
   })
 }
 
-/**
- * Affiche les médias filtrés en fonction de l'option de filtre sélectionnée.
- * @param {Object} mediasTemplate - Le modèle de médias à afficher.
- * @returns {void}
- */
 export const displayMediaWithFilter = (mediasTemplate) => {
   // Sélectionne les éléments relatifs au filtre actuel et à tous les filtres disponibles.
   const currentFilter = document.querySelector('#current_filter')
   const allFilters = Array.from(document.querySelectorAll('.dropdown_content li button'))
 
   // eslint-disable-next-line eqeqeq
-  let filterAlreadySelected = allFilters.find(filter => filter.textContent == currentFilter.textContent)
+  let filterAlreadySelected = allFilters.find((filter) => filter.textContent == currentFilter.textContent)
   filterAlreadySelected.style.display = 'none'
-
-  // Ajoute des écouteurs d'événements aux boutons de filtre.
-  allFilters.forEach(filter => {
-    filter.addEventListener('click', () => {
-      // Met à jour le filtre actuel et réaffiche le filtre précédemment sélectionné.
-      currentFilter.textContent = filter.textContent
-      if (filterAlreadySelected) filterAlreadySelected.style.display = 'block'
-
-      filterAlreadySelected = filter
-      filterAlreadySelected.style.display = 'none'
-
-      // Trie et affiche les médias en fonction du filtre sélectionné.
-      sortByFilter(filter.textContent)
-    })
-  })
 
   /**
    * Trie les médias en fonction de la valeur du filtre.
@@ -101,4 +81,37 @@ export const displayMediaWithFilter = (mediasTemplate) => {
       }, 100 * index)
     })
   }
+
+  /**
+   * Affiche les médias en fonction du filtre sélectionné.
+   * @param {string} filterValue - La valeur du filtre.
+   * @returns {void}
+   */
+  const displayMediaByFilter = (filterValue) => {
+    // Vérifie si le filtre sélectionné est différent de 'Popularité'.
+    if (filterValue !== 'Popularité') {
+      mediasTemplate.medias.sort((a, b) => a.title.localeCompare(b.title))
+    }
+
+    // Trie les médias en fonction du filtre sélectionné.
+    sortByFilter(filterValue)
+  }
+
+  // Vérifie le filtre actuel lors du chargement initial et affiche les médias en conséquence.
+  displayMediaByFilter(currentFilter.textContent)
+
+  // Ajoute des écouteurs d'événements aux boutons de filtre.
+  allFilters.forEach((filter) => {
+    filter.addEventListener('click', () => {
+      // Met à jour le filtre actuel et réaffiche le filtre précédemment sélectionné.
+      currentFilter.textContent = filter.textContent
+      if (filterAlreadySelected) filterAlreadySelected.style.display = 'block'
+
+      filterAlreadySelected = filter
+      filterAlreadySelected.style.display = 'none'
+
+      // Affiche les médias en fonction du filtre sélectionné.
+      displayMediaByFilter(filter.textContent)
+    })
+  })
 }

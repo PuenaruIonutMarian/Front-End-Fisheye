@@ -1,41 +1,39 @@
-import { getPhotographerById } from '../pages/photographer.js'
-
 /**
- * Affiche le nombre total de likes pour le photographe.
- * @async
- * @returns {void}
+ * Affiche le total des mentions J'aime pour un photographe et gère les mentions J'aime individuelles pour chaque média.
+ * @param {Object} photographer - Informations sur le photographe.
+ * @param {Array} medias - Tableau d'objets médias.
  */
-export const displayTotalLikes = async () => {
-  // Récupère les médias du photographe par son identifiant.
-  const { medias } = await getPhotographerById()
-
-  // Sélectionne tous les boutons de like.
+export const displayTotalLikes = (photographer, medias) => {
+  // Sélectionne tous les boutons "Like" et l'élément total des mentions Like
   const allBtnLike = document.querySelectorAll('.btn_like')
-
-  // Sélectionne l'élément affichant le nombre total de likes.
   const likesElement = document.querySelector('.photographer_likes_count')
 
   /**
-   * Met à jour le nombre total de likes affiché.
-   * @returns {void}
+   * Met à jour le nombre total de mentions J'aime en fonction du tableau actuel des médias.
+   * @param {Array} medias - Tableau d'objets médias.
    */
-  const updateTotalLikes = () => {
-    // Calcule le total des likes en utilisant la fonction de réduction (reduce).
-    const totalLikes = medias.reduce((acc, media) => acc + media.likes, 0)
+  const updateTotalLikes = (medias) => {
+    // Vérifie si medias est défini avant d'utiliser reduce
+    const totalLikes = medias ? medias.reduce((acc, media) => acc + media.likes, 0) : 0
     likesElement.textContent = `${totalLikes}`
   }
 
-  // Appelle la fonction pour mettre à jour le nombre total de likes.
-  updateTotalLikes()
+  // Met à jour le total des mentions Like initialement
+  updateTotalLikes(medias)
 
-  // Ajoute un écouteur d'événement à chaque bouton de like.
+  // Ajoute des écouteurs d'événements de clic à tous les boutons "Like"
   allBtnLike.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Trouve le média correspondant à l'identifiant du bouton de like.
+      // Vérifie si medias est défini avant d'utiliser find
       // eslint-disable-next-line eqeqeq
-      const media = medias.find(media => media.id == btn.dataset.id)
+      const media = medias && medias.find(media => media.id == btn.dataset.id)
 
-      // Incrémente ou décrémente le nombre de likes en fonction de l'état du bouton.
+      if (!media) {
+        console.error('Media not found for ID:', btn.dataset.id)
+        return
+      }
+
+      // Incrémente ou décrémente le nombre de mentions J'aime en fonction de l'état du bouton.
       if (!btn.classList.contains('liked')) {
         media.likes++
       } else {
@@ -45,12 +43,47 @@ export const displayTotalLikes = async () => {
       // Bascule la classe 'liked' du bouton.
       btn.classList.toggle('liked')
 
-      // Met à jour le texte de l'élément affichant le nombre de likes du média.
+      // Met à jour le nombre de mentions J'aime affiché à côté du bouton.
       const likesElement = btn.previousElementSibling
       likesElement.textContent = `${media.likes}`
 
-      // Met à jour le nombre total de likes.
-      updateTotalLikes()
+      // Passe directement le tableau des médias à updateTotalLikes
+      updateTotalLikes([...medias])
+    })
+  })
+}
+
+/**
+ * Ajoute des écouteurs d'événements de clic à tous les boutons "J'aime".
+ * @param {Object} photographer - Informations sur le photographe.
+ * @param {Array} medias - Tableau d'objets médias.
+ */
+export const addLikeButtonEventListeners = (photographer, medias) => {
+  const allBtnLike = document.querySelectorAll('.btn_like')
+
+  allBtnLike.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      // eslint-disable-next-line eqeqeq
+      const media = medias.find((media) => media.id == btn.dataset.id)
+
+      if (!media) {
+        console.error('Media not found for ID:', btn.dataset.id)
+        return
+      }
+
+      if (!btn.classList.contains('liked')) {
+        media.likes++
+      } else {
+        media.likes--
+      }
+
+      btn.classList.toggle('liked')
+
+      const likesElement = btn.previousElementSibling
+      likesElement.textContent = `${media.likes}`
+
+      // Met à jour le total des mentions Like
+      displayTotalLikes(photographer, medias)
     })
   })
 }

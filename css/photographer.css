@@ -120,6 +120,7 @@ form input {
   border: none;
   border-radius: 5px;
   font-size: 36px;
+  padding: 10px;
 }
 
 /* Styles pour la zone de texte du formulaire */
@@ -129,6 +130,7 @@ form textarea {
   height: 150px;
   resize: none;
   padding: 10px;
+  font-size: 36px;
 }
 
 /* Styles pour les messages d'erreur ou de succès */
@@ -361,7 +363,7 @@ form .contact_button:hover {
   border-radius: 5px;
   padding: 0 1px;
   font-weight: 400;
-  font-size: clamp(1.8rem, 2vw, 2.4rem);
+  font-size: clamp(18px, 2vw, 24px);
   color: var(--color-secondary);
 }
 
@@ -387,7 +389,7 @@ form .contact_button:hover {
 }
 
 /* Styles pour le titre "Trier par" dans la section de filtre du portefeuille */
-h2 .trier_par {
+.portofolio_filter h2 {
   font-size: 18px;
   font-weight: 700;
 }
@@ -711,10 +713,6 @@ h2 .trier_par {
   .photograph-header article a .photographer_name {
     font-size: 42px;
   }
-
-  .portofolio_filter h2 {
-    font-size: 22px;
-  }
 }
 
 @media screen and (max-width: 962px) {
@@ -737,6 +735,7 @@ h2 .trier_par {
   form input,
   form textarea {
     font-size: 18px;
+    padding: 5px;
   }
 
   form textarea {
@@ -890,6 +889,11 @@ h2 .trier_par {
 }
 
 @media screen and (max-width: 500px) {
+  form input,
+  form textarea {
+    padding: 0;
+    padding-left: 3px;
+  }
   .portofolio_filter {
     display: flex;
     justify-content: center;

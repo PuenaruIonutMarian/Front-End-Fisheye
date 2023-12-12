@@ -12,7 +12,8 @@ export const openCloseFilterMenu = () => {
   const filterButtons = document.querySelectorAll('.dropdown_content button')
 
   // Ajoute un écouteur d'événement au bouton du menu de filtre.
-  filterMenuButton.addEventListener('click', () => {
+  filterMenuButton.addEventListener('click', (event) => {
+    event.preventDefault()
     // Vérifie si le menu est actuellement étendu.
     const isExpanded = filterMenuButton.getAttribute('aria-expanded') === 'true' || false
 
@@ -67,11 +68,9 @@ export const displayMediaWithFilter = (mediasTemplate) => {
 
     // Recrée les médias du photographe en fonction du nouveau tri.
     mediasTemplate.createPhotographerMedias()
-    const mediasfiltered = mediasTemplate
 
     // Affiche la lightbox et le nombre total de likes.
-    displayLightbox(mediasfiltered)
-    displayTotalLikes()
+    displayLightbox(mediasTemplate)
 
     // Applique une animation aux éléments médias.
     const mediaElements = document.querySelectorAll('.portofolio')
@@ -80,6 +79,9 @@ export const displayMediaWithFilter = (mediasTemplate) => {
         media.classList.add('animeCard')
       }, 100 * index)
     })
+
+    // Update the medias array in the displayTotalLikes function
+    displayTotalLikes(mediasTemplate.photographer, mediasTemplate.medias)
   }
 
   /**

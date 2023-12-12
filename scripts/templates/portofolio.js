@@ -39,7 +39,7 @@ export default class PhotographerMedias {
       linkElement.href = '#'
       linkElement.dataset.media = media.id
       linkElement.setAttribute('role', 'link')
-      linkElement.setAttribute('aria-label', 'Voir le média en grand')
+      linkElement.setAttribute('aria-label', 'Voir le media en grand')
 
       // Crée l'élément figure
       const figureElement = document.createElement('figure')
@@ -70,7 +70,7 @@ export default class PhotographerMedias {
       // Crée l'élément div pour les "likes"
       const likesContainer = document.createElement('div')
       likesContainer.setAttribute('role', 'group')
-      likesContainer.setAttribute('aria-label', 'Bouton "Like" et nombre de "likes"')
+      likesContainer.setAttribute('aria-label', 'Bouton Like et nombre de likes')
 
       // Crée l'élément span pour le nombre de "likes"
       const nbLikeElement = document.createElement('span')

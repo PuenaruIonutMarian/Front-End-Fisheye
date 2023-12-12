@@ -3,7 +3,7 @@
 
 <head>
   <!-- Inclusion de la feuille de style CSS -->
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Définition de l'encodage des caractères -->
   <meta charset="utf-8">
@@ -21,7 +21,7 @@
   <!-- En-tête de la page avec le logo et le lien de retour à la page d'accueil -->
   <header class="photographer_header_logo">
     <a href="./index.html">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" aria-label="Retour a la page d'accueil" />
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" aria-label="Retour a la page d'accueil" >
     </a>
   </header>
 
@@ -38,14 +38,14 @@
       <div class="filter_section">
         <!-- Menu déroulant de tri -->
         <div class="dropdown">
-          <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false"
-            aria-controls="filter options" aria-label="Trier par">
+          <button class="btn_drop" type="button"  aria-haspopup="listbox" aria-expanded="false"
+            aria-controls="filter-options" aria-label="Trier par">
             <span id="current_filter">Popularité</span>
             <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
           </button>
 
           <!-- Options de tri dans le menu déroulant -->
-          <ul class="dropdown_content" aria-hidden="true">
+          <ul class="dropdown_content" aria-hidden="true" role="listbox" id="filter-options">
             <li role="option">
               <button type="button" tabindex="-1" aria-label="Trier par popularité">Popularité</button>
             </li>
@@ -69,27 +69,27 @@
     <div class="modal">
       <header class="modal_header">
         <h2 class="contact_me">Contactez-moi</h2>
-        <img src="assets/icons/close.svg" alt="Symbole de fermeture de la modale" onclick="closeModal()" />
-        <h2 class="modal_form_name"></h2>
+        <img src="assets/icons/close.svg" alt="Symbole de fermeture de la modale" onclick="closeModal()" >
+        <h2 class="modal_form_name" id="photographer-name" aria-hidden="true"></h2>
       </header>
       <form novalidate>
         <!-- Champs du formulaire de contact -->
         <div class="form_content">
           <label id="firstname-label" for="firstname">Prénom <span aria-hidden="true">*</span></label>
           <input class="formField" aria-labelledby="firstname-label" type="text" id="firstname" name="firstname"
-            maxlength="15" data-error="Veuillez entrer 2 caractères ou plus pour le prénom." required />
+            maxlength="15" data-error="Veuillez entrer 2 caractères ou plus pour le prénom." required >
           <span></span>
         </div>
         <div class="form_content">
           <label id="lastname-label" for="lastname">Nom <span aria-hidden="true">*</span></label>
           <input class="formField" aria-labelledby="lastname-label" type="text" id="lastname" name="lastname"
-            maxlength="15" data-error="Veuillez entrer 2 caractères ou plus pour le nom." required />
+            maxlength="15" data-error="Veuillez entrer 2 caractères ou plus pour le nom." required >
           <span></span>
         </div>
         <div class="form_content">
           <label id="email-label" for="email">Email <span aria-hidden="true">*</span></label>
           <input class="formField" aria-labelledby="email-label" type="email" id="email" name="email" maxlength="100"
-            data-error="Veuillez renseigner une adresse e-mail valide." required />
+            data-error="Veuillez renseigner une adresse e-mail valide." required >
           <span></span>
         </div>
         <div class="form_content">
@@ -106,13 +106,13 @@
 
   <!-- Lightbox pour afficher les médias en détail -->
   <div class="lightbox_wrapper wrapper" aria-modal="true" role="dialog">
-    <div class="lightbox" aria-label="Vue détaillée du média">
+    <div class="lightbox" aria-label="Media Details">
       <button aria-label="Fermer la fenêtre">
         <em class="fa fa-times btn_close_lightbox" aria-hidden="true"></em>
       </button>
       <button class="btn_next" aria-label="Média suivant"></button>
       <button class="btn_previous" aria-label="Média précédent"></button>
-      <figure class="lightbox_media" role="média" aria-label="Média actuel"></figure>
+      <figure class="lightbox_media" role="presentation" aria-label="Média actuel"></figure>
     </div>
   </div>
 

@@ -59,6 +59,7 @@ export const displayLightbox = medias => {
     lightboxWrapper.style.display = 'flex'
     btnClose.focus()
     lightboxTemplate()
+    lightboxWrapper.setAttribute('aria-label', 'Details Media: ' + mediasList[index].title)
   }
 
   /**
